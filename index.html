@@ -108,6 +108,28 @@ body.touch #hp{bottom:auto;top:calc(56px + env(safe-area-inset-top,0px))}
 #menu{overflow:auto;position:fixed;inset:0;background:#000c;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;padding:20px}
 #menu h1{font-size:44px;margin:0 0 10px;letter-spacing:4px;color:#ffb300}
 #menu p{margin:4px 0;color:#ddd;line-height:1.8}
+
+#mm{left:12px!important;margin-left:0!important;top:calc(8px + env(safe-area-inset-top,0px))!important;width:104px;height:104px}
+body.touch #cam{display:none}
+body.touch #hp{left:12px!important;right:auto!important;bottom:auto!important;top:calc(120px + env(safe-area-inset-top,0px))!important}
+body.touch #ammo{left:12px!important;right:auto!important;bottom:auto!important;top:calc(160px + env(safe-area-inset-top,0px))!important;font-size:16px}
+#info{top:calc(74px + env(safe-area-inset-top,0px))!important}
+#sb{top:calc(204px + env(safe-area-inset-top,0px))!important}
+@media (max-height:520px){
+body.touch #hp{left:128px!important;top:calc(8px + env(safe-area-inset-top,0px))!important}
+body.touch #ammo{left:128px!important;top:calc(48px + env(safe-area-inset-top,0px))!important}
+#sb{left:128px!important;top:calc(92px + env(safe-area-inset-top,0px))!important;font-size:11px!important}
+#bf{right:24px;bottom:calc(64px + env(safe-area-inset-bottom,0px));width:84px;height:84px}
+#bw{right:30px;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:52px;height:52px}
+#bj{right:118px;bottom:calc(64px + env(safe-area-inset-bottom,0px));width:64px;height:64px}
+#bc{right:192px;bottom:calc(64px + env(safe-area-inset-bottom,0px));width:52px;height:52px}
+#br{right:124px;bottom:calc(136px + env(safe-area-inset-bottom,0px));width:46px;height:46px}
+#bv{top:calc(56px + env(safe-area-inset-top,0px))}
+#joy{left:20px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:120px;height:120px}
+#knob{left:40px;top:40px}
+#sc{transform:translateX(-50%) scale(.85);transform-origin:top center}
+#chat{height:min(300px,70vh)}
+}
 </style></head><body>
 <div id="hud"><div id="flash"></div><div id="cross"></div><div id="banner" style="display:none;position:absolute;left:0;right:0;top:30%;text-align:center;font-size:42px;color:#ffb300"></div>
 <div id="sc"><div id="emb"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#0c1a2a" stroke="#4aa3ff" stroke-width="3"/><path d="M30 12l17 9v13c0 9-8 15-17 18-9-3-17-9-17-18V21z" fill="#e8eef5"/><polygon points="30,22 33,29 41,30 35,35 37,43 30,39 23,43 25,35 19,30 27,29" fill="#1d7fd8"/></svg><div id="tm">00:00</div></div>
@@ -256,9 +278,11 @@ if(matchMedia('(pointer:coarse)').matches||'ontouchstart' in window)document.bod
 let jx=0,jy=0,tFire=false,tJump=false,jid=null,lid=null,lx=0,ly=0;
 const joy=$('joy'),kn=$('knob'),cv=ren.domElement;
 function jm(e){const r=joy.getBoundingClientRect(),R=r.width/2;let dx=e.clientX-(r.left+R),dy=e.clientY-(r.top+R);const m=Math.hypot(dx,dy);if(m>R){dx*=R/m;dy*=R/m}jx=dx/R;jy=dy/R;kn.style.transform='translate('+dx+'px,'+dy+'px)'}
-joy.addEventListener('pointerdown',e=>{jid=e.pointerId;joy.setPointerCapture(jid);jm(e)});
-joy.addEventListener('pointermove',e=>{if(e.pointerId===jid)jm(e)});
-const je=e=>{if(e.pointerId===jid){jid=null;jx=jy=0;kn.style.transform=''}};joy.addEventListener('pointerup',je);joy.addEventListener('pointercancel',je);
+let jt=null;
+joy.addEventListener('touchstart',e=>{if(jt===null){const t=e.changedTouches[0];jt=t.identifier;jm(t)}e.preventDefault()},{passive:false});
+document.addEventListener('touchmove',e=>{for(const t of e.changedTouches)if(t.identifier===jt){jm(t);e.preventDefault()}},{passive:false});
+const jend=e=>{for(const t of e.changedTouches)if(t.identifier===jt){jt=null;jx=jy=0;kn.style.transform=''}};
+document.addEventListener('touchend',jend);document.addEventListener('touchcancel',jend);
 function hold(id,f){const b=$(id);b.addEventListener('pointerdown',e=>{e.preventDefault();f(true)});['pointerup','pointercancel','pointerleave'].forEach(t=>b.addEventListener(t,()=>f(false)))}
 hold('bf',v=>tFire=v);hold('bj',v=>tJump=v);hold('br',v=>{if(v)reload()});hold('bv',v=>{if(v)P.tpp=!P.tpp});hold('bw',v=>{if(v)toggleW()});
 const noLook=t=>t&&t.closest&&t.closest('#joy,.tb,#bc,#chb,#chat,#inv,#menu,button,input');
