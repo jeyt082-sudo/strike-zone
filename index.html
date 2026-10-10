@@ -104,7 +104,8 @@ body.touch #hp{bottom:auto;top:calc(56px + env(safe-area-inset-top,0px))}
 .pr button{border:0;border-radius:5px;background:#ffc400;font-weight:700;font-size:11px;padding:2px 8px;cursor:pointer}
 #inv{position:fixed;left:50%;top:calc(70px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:60;display:none;background:#000e;border:2px solid #ffc400;border-radius:10px;padding:10px 14px;direction:rtl;text-align:center}
 #inv button{border:0;border-radius:6px;padding:6px 14px;margin:6px 4px 0;font-weight:700;cursor:pointer}
-#go:disabled,#mp:disabled,#br:disabled{opacity:.35;cursor:not-allowed}
+#nok:disabled{opacity:.35;cursor:not-allowed}
+#go:disabled,#mp:disabled,#room:disabled{opacity:.35;cursor:not-allowed}
 #menu{overflow:auto;position:fixed;inset:0;background:#000c;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;padding:20px}
 #menu h1{font-size:44px;margin:0 0 10px;letter-spacing:4px;color:#ffb300}
 #menu p{margin:4px 0;color:#ddd;line-height:1.8}
@@ -131,8 +132,9 @@ body.touch #ammo{left:128px!important;top:calc(48px + env(safe-area-inset-top,0p
 #chat{height:min(300px,70vh)}
 }
 #info{display:none!important}
+html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 </style></head><body>
-<div id="hud"><div id="flash"></div><div id="cross"></div><div id="banner" style="display:none;position:absolute;left:0;right:0;top:30%;text-align:center;font-size:42px;color:#ffb300"></div>
+<div id="hud"><div id="flash"></div><div id="cross"></div><div id="wait" style="display:none;position:absolute;left:0;right:0;top:22%;text-align:center;font-size:17px;font-weight:700;color:#ffb300;text-shadow:0 1px 4px #000">منتظر دوستت…</div><div id="banner" style="display:none;position:absolute;left:0;right:0;top:30%;text-align:center;font-size:42px;color:#ffb300"></div>
 <div id="sc"><div id="emb"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#0c1a2a" stroke="#4aa3ff" stroke-width="3"/><path d="M30 12l17 9v13c0 9-8 15-17 18-9-3-17-9-17-18V21z" fill="#e8eef5"/><polygon points="30,22 33,29 41,30 35,35 37,43 30,39 23,43 25,35 19,30 27,29" fill="#1d7fd8"/></svg><div id="tm">00:00</div></div>
 <div id="bars"><div class="rw"><div class="sbx bl" id="sbB">0</div><div class="bar"><b id="bB" style="background:#4aa3ff"></b></div></div><div class="rw"><div class="sbx rd" id="sbR">0</div><div class="bar"><b id="bR" style="background:#ff5a5a"></b></div></div><span id="tgt">80</span></div></div>
 <canvas id="mm" width="120" height="120" style="position:absolute;left:50%;margin-left:-60px;top:calc(76px + env(safe-area-inset-top,0px));border:2px solid #fff6;border-radius:8px"></canvas><div class="b" id="info"></div><div class="b" id="sb" style="display:none;left:12px;top:calc(150px + env(safe-area-inset-top,0px));font-size:13px;line-height:1.5;white-space:pre;direction:ltr;text-align:left"></div><div class="b" id="cam"></div>
@@ -141,6 +143,7 @@ body.touch #ammo{left:128px!important;top:calc(48px + env(safe-area-inset-top,0p
 <div class="tb" id="bf">🔥</div><div class="tb" id="bw">🔫</div>
 <div class="tb" id="bj"><svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#dcdcdc" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9" r="4.5" fill="#dcdcdc" stroke="none"/><path d="M22 15l4 12M23 17l8 5M13 12l21 10M26 27l9 4-2 9M26 27l-9 7-8-1"/></svg></div><div class="tb" id="br">R</div><div class="tb" id="bv">FPP/TPP</div></div>
 <div id="bc"><svg viewBox="0 0 40 40" width="34" height="34" fill="#fff"><circle cx="19" cy="8" r="4"/><path d="M14 14h9l3 7-4 2 1 7h-5l-1-6-5 5-3-2 5-8z"/><rect x="6" y="16" width="24" height="3" rx="1" transform="rotate(-8 18 17)"/></svg></div>
+<div id="ns" style="position:fixed;inset:0;z-index:100;background:#0b0e12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">باید نام خود را بنویسید</div><input id="nm2" maxlength="14" placeholder="نام شما…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;width:240px"><button id="nok" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">ادامه</button></div>
 <div id="chb">💬</div>
 <div id="inv"><div id="invt"></div><button id="invy" style="background:#3aa0ff">قبول</button><button id="invn">رد</button></div>
 <div id="chat"><div id="cnote">در حال اتصال…</div><div id="plist"></div><div id="clog"></div><div id="crow"><input id="cin" dir="auto" maxlength="200" placeholder="پیام جهانی…" autocomplete="off"><button id="csend">➤</button></div></div>
@@ -148,7 +151,14 @@ body.touch #ammo{left:128px!important;top:calc(48px + env(safe-area-inset-top,0p
 <input id="nm" maxlength="14" placeholder="نام خود را بنویسید…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;margin:10px 0;width:240px">
 <div id="ros" style="display:flex;gap:28px;justify-content:center;margin:8px 0;line-height:1.7"></div>
 <button id="go" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">شروع بازی</button>
-<div style="margin:8px 0;display:flex;gap:12px;justify-content:center"><button id="mp" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">MP</button><button id="br" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">BR</button></div>
+<div style="margin:8px 0;display:flex;gap:12px;justify-content:center"><button id="mp" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">MP</button><button id="room" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">Room</button></div>
+<div id="rp" style="display:none;margin:6px 0;line-height:1.9">
+<div>می‌خوای چی بازی کنی؟</div>
+<button id="rt1" style="font-size:15px;font-weight:700;padding:8px 14px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer;margin:3px">تک‌به‌تک با دوست</button><button id="rt2" style="font-size:15px;font-weight:700;padding:8px 14px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer;margin:3px">۲۰ در برابر ۲۰ (دوستت هم‌تیمی)</button>
+<div id="rp2" style="display:none"><button id="rc1" style="font-size:15px;font-weight:700;padding:8px 14px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer;margin:3px">ساخت اتاق</button><button id="rc2" style="font-size:15px;font-weight:700;padding:8px 14px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer;margin:3px">ورود به اتاق</button></div>
+<div id="rinfo" style="color:#ffd24d;font-weight:700"></div>
+<button id="renter" style="display:none;font-size:18px;font-weight:700;padding:8px 36px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer;margin:6px 0">ورود</button><br><input id="dc" maxlength="12" placeholder="کد اتاق دوستت" autocomplete="off" style="display:none;font-size:16px;padding:8px;border-radius:8px;border:2px solid #3aa0ff;background:#111;color:#fff;text-align:center;width:200px;margin:4px 0">
+</div>
 <p id="hint" style="color:#f88;font-size:13px">برای شروع باید نام وارد کنید</p>
 <p>W A S D حرکت · ماوس نگاه · کلیک چپ شلیک</p>
 <p>R بارگذاری مجدد · Shift دویدن · Space پرش</p>
@@ -200,17 +210,17 @@ g.userData={hp:60,cd:1+Math.random()*2,sp:3+Math.random()*1.5+wave*.15,team,name
 function newRound(){[...enemies,...allies].forEach(u=>scene.remove(u));enemies.length=0;allies.length=0;bullets.forEach(b=>scene.remove(b.m));bullets.length=0;
 Object.assign(P,{x:0,z:22,y:0,vy:0,hp:100,ammo:30,reserve:120,reload:0,dead:false,yaw:0,pitch:0});
 AN.forEach((nme,i)=>mk(1,(i-9)*3,25+(i%2)*2,nme));EN.forEach((nme,i)=>mk(0,(i-9.5)*3,-24-(i%2)*3,nme));roundOver=false}
-let matchOver=false,MT=0;
+let matchOver=false,MT=0,GOAL=80;
 function spawnPos(team){return team?[(Math.random()-.5)*56,25]:[(Math.random()-.5)*56,-24]}
 function die(n,byP){scene.remove(n);const U=n.userData,a=U.team?allies:enemies,i=a.indexOf(n);if(i>=0)a.splice(i,1);if(byP)P.kills++;
 score[U.team?1:0]++;if(!checkEnd())setTimeout(()=>{if(!matchOver){const q=spawnPos(U.team);mk(U.team,q[0],q[1],U.name)}},2500)}
-function checkEnd(){if(matchOver)return true;const w=score[0]>=80,l=score[1]>=80;if(!w&&!l)return false;matchOver=true;const bn=$('banner');bn.textContent=(w?'VICTORY ':'DEFEAT ')+score[0]+' : '+score[1];bn.style.display='block';
+function checkEnd(){if(matchOver)return true;const w=score[0]>=GOAL,l=score[1]>=GOAL;if(!w&&!l)return false;matchOver=true;const bn=$('banner');bn.textContent=(w?'VICTORY ':'DEFEAT ')+score[0]+' : '+score[1];bn.style.display='block';
 setTimeout(()=>{bn.style.display='none';score=[0,0];P.kills=0;toLobby();matchOver=false},5000);return true}
-function toLobby(){if(MP.on){try{MP.room.leave()}catch(e){}MP.on=false;MP.rem.forEach(o=>scene.remove(o.g));MP.rem.clear();$('sb').style.display='none'}
+function toLobby(){MP.duel=false;MP.team=false;GOAL=80;$('tgt').textContent=80;$('wait').style.display='none';if(MP.on){try{MP.room.leave()}catch(e){}MP.on=false;MP.rem.forEach(o=>scene.remove(o.g));MP.rem.clear();$('sb').style.display='none'}
 newRound();started=false;mouseDown=false;tFire=false;tJump=false;for(const k in keys)keys[k]=0;try{document.exitPointerLock()}catch(e){}
 $('menu').style.display='flex'}
 function spDie(){score[1]++;if(checkEnd())return;const bn=$('banner');bn.textContent='YOU DIED';bn.style.display='block';
-setTimeout(()=>{if(!matchOver)bn.style.display='none';const q=spawnPos(1);Object.assign(P,{x:q[0],z:q[1]-3,y:0,vy:0,hp:100,ammo:30,reserve:120,reload:0,dead:false})},3000)}
+setTimeout(()=>{if(!matchOver)bn.style.display='none';const q=MP.duel?[(Math.random()-.5)*100,(Math.random()-.5)*100+3]:spawnPos(1);Object.assign(P,{x:q[0],z:q[1]-3,y:0,vy:0,hp:100,ammo:30,reserve:120,reload:0,dead:false})},3000)}
 newRound();
 // input
 const keys={};let locked=false,started=false,mouseDown=false;
@@ -219,36 +229,56 @@ addEventListener('keyup',e=>{if(e.target.tagName!=='INPUT')keys[e.code]=0});
 const nm=$('nm'),go=$('go');
 function ros(){const n=nm.value.trim();const col=(c,a)=>{const d=document.createElement('div');d.style.color=c;a.forEach(t=>{const r=document.createElement('div');r.textContent=t;d.appendChild(r)});return d};
 $('ros').replaceChildren(col('#6bb5ff',['تیم آبی',(n||'؟')+' (شما)',...AN.slice(0,4),'… +'+(AN.length-4)]),col('#ff6b6b',['تیم قرمز',...EN.slice(0,5),'… +'+(EN.length-5)]))}
-function chk(){const ok=!!nm.value.trim();go.disabled=!ok;$('mp').disabled=!ok;$('br').disabled=!ok;$('hint').textContent='برای شروع باید نام وارد کنید';$('hint').style.visibility=ok?'hidden':'visible';ros()}
+function chk(){const ok=!!nm.value.trim();go.disabled=!ok;$('mp').disabled=!ok;$('room').disabled=!ok;$('hint').textContent='برای شروع باید نام وارد کنید';$('hint').style.visibility=ok?'hidden':'visible';ros()}
 function begin(){const n=nm.value.trim();if(!n)return;MT=0;if(!P.lbl){P.name=n.slice(0,14);P.lbl=lbl(P.name,2);body.add(P.lbl)}started=true;$('menu').style.display='none';try{ren.domElement.requestPointerLock()}catch(e){}}
-const MP={on:false,sel:false,room:null,code:'main',t:0,sb:0,rem:new Map()};
+const MP={on:false,duel:false,team:false,rtype:null,rj:null,newCode:'',sel:false,room:null,code:'main',t:0,sb:0,rem:new Map()};
 const mpMe=()=>{const q=MP.room.peers().find(x=>x.isMe&&x.sameTab);return q&&q.peer};
-function rmk(name){const g=new THREE.Group();const t=new THREE.Mesh(new THREE.BoxGeometry(.8,1.1,.5),M(0xc77a1e));t.position.y=1.1;
-const l=new THREE.Mesh(new THREE.BoxGeometry(.7,.7,.4),M(0x4a3010));l.position.y=.35;
+function rmk(name,tm){const g=new THREE.Group();const t=new THREE.Mesh(new THREE.BoxGeometry(.8,1.1,.5),M(tm?0x2e6fb8:0xc77a1e));t.position.y=1.1;
+const l=new THREE.Mesh(new THREE.BoxGeometry(.7,.7,.4),M(tm?0x1c2f4a:0x4a3010));l.position.y=.35;
 const h=new THREE.Mesh(new THREE.BoxGeometry(.4,.4,.4),M(0xd8a880));h.position.y=1.85;h.userData.head=true;
-const gn=new THREE.Mesh(new THREE.BoxGeometry(.12,.15,.8),M(0x111111));gn.position.set(.35,1.3,-.5);g.add(t,l,h,gn,lbl(name,0));return g}
+const gn=new THREE.Mesh(new THREE.BoxGeometry(.12,.15,.8),M(0x111111));gn.position.set(.35,1.3,-.5);g.add(t,l,h,gn,lbl(name,tm?1:0));return g}
 function tracer(a,b){const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a),new THREE.Vector3(...b)]),new THREE.LineBasicMaterial({color:0xffe08a}));scene.add(ln);tracers.push([ln,.06])}
 function mpSpawn(){Object.assign(P,{hp:100,ammo:30,reserve:120,reload:0,dead:false,y:0,vy:0,x:(Math.random()-.5)*90,z:(Math.random()-.5)*90})}
 MP.die=function(from){P.dead=true;MP.room.emit('kill',{to:from});const bn=$('banner');bn.textContent='ELIMINATED';bn.style.display='block';setTimeout(()=>{bn.style.display='none';mpSpawn()},3000)};
 function mpTick(dt){const R=MP.room,ps=R.peers(),seen=new Set(),now=performance.now();
+if(MP.duel){const alone=MP.rem.size===0,w=$('wait'),con=typeof R.connected==='function'?R.connected():true;
+if(alone&&!matchOver){MP.at=(MP.at||0)+dt;w.style.display='block';w.textContent=con?'منتظر دوستت… (کد: '+MP.code+') · تا اون موقع با بات تمرین کن':(MP.at>10?'اتصال به سرور برقرار نشد (اینترنت یا فیلترشکن؟) · با بات تمرین کن':'در حال اتصال به سرور…');
+if(MP.at>5&&!enemies.length){const q=spawnPos(0);mk(0,q[0],q[1],'Bot')}}
+else{MP.at=0;w.style.display='none';if(enemies.length&&!alone){enemies.slice().forEach(u=>scene.remove(u));enemies.length=0;score=[0,0]}}}
 for(const p of ps){if(p.isMe)continue;const q=p.presence;if(!q||typeof q.x!=='number'||typeof q.z!=='number')continue;seen.add(p.peer);
 const nmx=String(q.n||'Player').slice(0,14);let o=MP.rem.get(p.peer);
-if(!o||o.nm!==nmx){if(o)scene.remove(o.g);const g=rmk(nmx);g.userData.peer=p.peer;g.position.set(q.x,+q.y||0,q.z);scene.add(g);o={g,nm:nmx};MP.rem.set(p.peer,o)}
+if(!o||o.nm!==nmx){if(o)scene.remove(o.g);const g=rmk(nmx,MP.team);g.userData.peer=p.peer;g.position.set(q.x,+q.y||0,q.z);scene.add(g);o={g,nm:nmx};MP.rem.set(p.peer,o)}
 const g=o.g,k=Math.min(1,dt*12);g.position.x+=(q.x-g.position.x)*k;g.position.z+=(q.z-g.position.z)*k;g.position.y+=((+q.y||0)-g.position.y)*k;g.rotation.y=+q.yw||0;g.visible=!q.d}
 for(const [id,o] of [...MP.rem])if(!seen.has(id)){scene.remove(o.g);MP.rem.delete(id)}
 if(now-MP.t>50){MP.t=now;R.presence({n:P.name,x:+P.x.toFixed(2),y:+P.y.toFixed(2),z:+P.z.toFixed(2),yw:+P.yaw.toFixed(2),d:P.dead,k:P.kills})}
 if(now-MP.sb>500){MP.sb=now;const rows=[[P.name+' (you)',P.kills],...[...seen].map(id=>{const q=ps.find(x=>x.peer===id).presence;return [String(q.n||'Player').slice(0,14),+q.k||0]})].sort((a,b)=>b[1]-a[1]);$('sb').textContent='MP · '+MP.code+'\n'+rows.map(r=>r[0]+'  '+r[1]).join('\n')}}
-async function startMP(){const n=nm.value.trim();if(!n)return;const h=$('hint');
-const fail=()=>{h.textContent='MP در دسترس نیست: صفحه باید با حساب واردشده claude.ai (عضو سازمان یا مهمان دعوت‌شده) باز شود';h.style.visibility='visible'};
-try{const r=window.claude&&await claude.use('room');if(!r)return fail();MP.code='main';MP.room=await r.join('g-'+MP.code)}catch(e){return fail()}
+async function startMP(kind,rcode){const duel=kind==='duel',team=kind==='team';const n=nm.value.trim();if(!n)return;const h=$('hint');
+const fail=()=>{toast('MP در دسترس نیست: صفحه باید با حساب واردشده claude.ai (عضو سازمان یا مهمان دعوت‌شده) باز شود')};
+try{const r=window.claude&&await claude.use('room');if(!r)return fail();let code=rcode||'main';MP.code=code;MP.room=await r.join((duel?'d-':team?'t-':'g-')+code)}catch(e){return fail()}
 const R=MP.room;
+if(duel||team){await new Promise(z=>setTimeout(z,700));if(R.peers().length>2){try{R.leave()}catch(e){}toast('اتاق پر است، کد دیگه‌ای بزن');return}}
 R.on('hit',m=>{if(m.isMe||!m.data||P.dead)return;if(m.data.to===mpMe())hurt(Math.min(100,Math.max(0,+m.data.d||0)),m.peer)});
-R.on('kill',m=>{if(!m.isMe&&m.data&&m.data.to===mpMe())P.kills++});
+R.on('kill',m=>{if(!m.isMe&&m.data&&m.data.to===mpMe()){P.kills++;if(MP.duel){score[0]++;checkEnd()}}});
 R.on('fire',m=>{if(m.isMe||!m.data)return;try{const a=m.data.o.map(Number),b=m.data.e.map(Number);if(a.concat(b).some(isNaN))return;tracer(a,b)}catch(e){}});
-MP.on=true;P.kills=0;$('sb').style.display='block';begin()}
-function setMode(m){MP.mode=MP.mode===m?null:m;for(const k of['mp','br']){const on=MP.mode===k,e=$(k);e.style.background=on?'#3aa0ff':'#777';e.style.color=on?'#000':'#ddd'}go.textContent=MP.mode?'شروع بازی ('+MP.mode.toUpperCase()+')':'شروع بازی'}
-$('mp').onclick=()=>setMode('mp');$('br').onclick=()=>setMode('br');
-nm.addEventListener('input',chk);const goNow=()=>{if(!MP.mode){const h=$('hint');h.textContent='باید یکی از حالت‌ها را انتخاب کنید: MP یا BR';h.style.visibility='visible';return}MP.mode==='mp'?startMP():begin()};go.onclick=goNow;nm.addEventListener('keydown',e=>{if(e.key==='Enter')goNow()});chk();
+MP.on=true;MP.duel=duel;MP.team=team;if(team&&allies.length){scene.remove(allies.pop())}if(duel){[...enemies,...allies].forEach(u=>scene.remove(u));enemies.length=0;allies.length=0;score=[0,0];GOAL=10;$('tgt').textContent=10;mpSpawn()}P.kills=0;$('sb').style.display='block';begin()}
+function setMode(m){MP.mode=MP.mode===m?null:m;for(const k of['mp','room']){const on=MP.mode===k,e=$(k);e.style.background=on?'#3aa0ff':'#777';e.style.color=on?'#000':'#ddd'}go.textContent=MP.mode?'شروع بازی ('+(MP.mode==='mp'?'MP':'Room')+')':'شروع بازی';$('rp').style.display=MP.mode==='room'?'block':'none'}
+$('mp').onclick=()=>setMode('mp');$('room').onclick=()=>setMode('room');
+function pick(ids,on){ids.forEach(i=>{const e=$(i),a=i===on;e.style.background=a?'#3aa0ff':'#777';e.style.color=a?'#000':'#ddd'})}
+$('rt1').onclick=()=>{MP.rtype='duel';pick(['rt1','rt2'],'rt1');$('rp2').style.display='block'};
+$('rt2').onclick=()=>{MP.rtype='team';pick(['rt1','rt2'],'rt2');$('rp2').style.display='block'};
+$('rc1').onclick=()=>{MP.rj='create';pick(['rc1','rc2'],'rc1');MP.newCode=String(1000+Math.floor(Math.random()*9000));$('dc').style.display='none';$('renter').style.display='inline-block';$('rinfo').textContent='کد اتاق تو: '+MP.newCode+' — به دوستت بده و «ورود» را بزن'};
+$('rc2').onclick=()=>{MP.rj='join';pick(['rc1','rc2'],'rc2');$('dc').style.display='';$('renter').style.display='inline-block';$('rinfo').textContent='کد اتاق دوستت را بنویس و «ورود» را بزن'};
+nm.addEventListener('input',chk);const goNow=()=>{if(!MP.mode){toast('باید یکی از حالت‌ها را انتخاب کنید: MP یا Room');return}
+if(MP.mode==='mp'){startMP('mp');return}
+if(!MP.rtype||!MP.rj){toast('اول نوع بازی و «ساخت اتاق» یا «ورود به اتاق» را انتخاب کن');return}
+const code=MP.rj==='create'?MP.newCode:$('dc').value.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,12);
+if(!code||code.length<3){toast('کد اتاق دوستت را بنویس (حداقل ۳ حرف یا عدد)');return}
+startMP(MP.rtype,code)};go.onclick=goNow;$('renter').onclick=goNow;nm.addEventListener('keydown',e=>{if(e.key==='Enter')goNow()});chk();
+const nm2=$('nm2'),nok=$('nok');
+nm2.addEventListener('input',()=>{nok.disabled=!nm2.value.trim()});
+function nameOk(){const n=nm2.value.trim();if(!n)return;try{localStorage.setItem('sz_name',n)}catch(e){}nm.value=n;nm.dispatchEvent(new Event('input'));$('ns').style.display='none'}
+try{const sv=localStorage.getItem('sz_name');if(sv){nm2.value=sv;nok.disabled=false;nameOk()}}catch(e){}
+nok.onclick=nameOk;nm2.addEventListener('keydown',e=>{if(e.key==='Enter')nameOk()});
 document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===ren.domElement;if(!locked&&started&&!P.dead&&!chatOpen)$('menu').style.display='flex'});
 addEventListener('mousemove',e=>{if(!locked&&!mouseDown)return;P.yaw-=e.movementX*.0022;P.pitch=Math.max(-1.4,Math.min(1.4,P.pitch-e.movementY*.0022))});
 addEventListener('mousedown',()=>mouseDown=true);addEventListener('mouseup',()=>mouseDown=false);
@@ -258,12 +288,12 @@ function toggleW(){P.w^=1;P.reload=0;$('bw').textContent=P.w?'🔪':'🔫'}
 function stab(){P.fire=.45;P.swing=.25;const fx=-Math.sin(P.yaw),fz=-Math.cos(P.yaw);
 for(const n of [...enemies]){const dx=n.position.x-P.x,dz=n.position.z-P.z,d=Math.hypot(dx,dz);
 if(d<3&&(dx*fx+dz*fz)/d>.3){die(n,true)}}
-if(MP.on)for(const o of MP.rem.values()){const g=o.g,dx=g.position.x-P.x,dz=g.position.z-P.z,d=Math.hypot(dx,dz);if(d<3&&(dx*fx+dz*fz)/d>.3)MP.room.emit('hit',{to:g.userData.peer,d:100})}}
+if(MP.on&&!MP.team)for(const o of MP.rem.values()){const g=o.g,dx=g.position.x-P.x,dz=g.position.z-P.z,d=Math.hypot(dx,dz);if(d<3&&(dx*fx+dz*fz)/d>.3)MP.room.emit('hit',{to:g.userData.peer,d:100})}}
 // shooting
 const ray=new THREE.Raycaster();const tracers=[];
 function shoot(){if(P.ammo<=0){reload();return}P.ammo--;P.fire=.09;P.pitch+=P.crouch?.007:.012;P.yaw+=(Math.random()-.5)*.006;
 ray.setFromCamera({x:(Math.random()-.5)*.01,y:(Math.random()-.5)*.01},cam);
-const targets=[...solid,...enemies,...[...MP.rem.values()].map(o=>o.g)];const hit=ray.intersectObjects(targets,true)[0];
+const targets=[...solid,...enemies,...(MP.team?[]:[...MP.rem.values()].map(o=>o.g))];const hit=ray.intersectObjects(targets,true)[0];
 const o=ray.ray.origin.clone().add(ray.ray.direction.clone().multiplyScalar(1)).add(new THREE.Vector3(0,P.tpp?-.2:-.15,0));
 const e=hit?hit.point:ray.ray.at(80,new THREE.Vector3());
 const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([o,e]),new THREE.LineBasicMaterial({color:0xffe08a}));scene.add(ln);tracers.push([ln,.06]);if(MP.on)MP.room.emit('fire',{o:[o.x,o.y,o.z],e:[e.x,e.y,e.z]});
@@ -325,7 +355,7 @@ const dot=(x,z,c)=>{mx.fillStyle=c;mx.beginPath();mx.arc(f(x),f(z),3,0,6.3);mx.f
 const near=(x,z)=>Math.hypot(x-P.x,z-P.z)<90;
 allies.forEach(u=>dot(u.position.x,u.position.z,'#4aa3ff'));
 enemies.forEach(u=>near(u.position.x,u.position.z)&&dot(u.position.x,u.position.z,'#ff4a4a'));
-MP.rem.forEach(o=>near(o.g.position.x,o.g.position.z)&&dot(o.g.position.x,o.g.position.z,'#ffa43a'));
+MP.rem.forEach(o=>near(o.g.position.x,o.g.position.z)&&dot(o.g.position.x,o.g.position.z,MP.team?'#4aa3ff':'#ffa43a'));
 const px=f(P.x),pz=f(P.z);mx.strokeStyle='#ffd24d';mx.lineWidth=2;mx.beginPath();mx.moveTo(px,pz);mx.lineTo(px-Math.sin(P.yaw)*10,pz-Math.cos(P.yaw)*10);mx.stroke();dot(P.x,P.z,'#ffd24d')}
 // loop
 let last=performance.now();
@@ -366,7 +396,7 @@ if(P.tpp){const back=new THREE.Vector3(.8,P.eye+.5,4.5).applyEuler(new THREE.Eul
 cam.position.set(P.x+back.x,P.y+Math.max(.4,back.y),P.z+back.z)}
 else cam.position.set(P.x,P.y+P.eye,P.z);
 $('info').textContent=(allies.length+(P.dead?0:1))+' vs '+enemies.length+'  |  KILLS '+P.kills;
-{const mm=Math.floor(MT/60),ss=Math.floor(MT%60);$('tm').textContent=(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;$('sbB').textContent=score[0];$('sbR').textContent=score[1];$('bB').style.width=Math.min(100,score[0]/80*100)+'%';$('bR').style.width=Math.min(100,score[1]/80*100)+'%'}
+{const mm=Math.floor(MT/60),ss=Math.floor(MT%60);$('tm').textContent=(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;$('sbB').textContent=score[0];$('sbR').textContent=score[1];$('bB').style.width=Math.min(100,score[0]/GOAL*100)+'%';$('bR').style.width=Math.min(100,score[1]/GOAL*100)+'%'}
 $('cam').textContent=P.tpp?'TPP (V)':'FPP (V)';
 $('hp').textContent=(P.name||'')+'  HP '+Math.max(0,Math.ceil(P.hp));
 $('ammo').textContent=P.w?'KNIFE':P.reload>0?'RELOADING…':P.ammo+' / '+P.reserve;
