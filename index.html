@@ -133,6 +133,9 @@ body.touch #ammo{left:128px!important;top:calc(48px + env(safe-area-inset-top,0p
 }
 #info{display:none!important}
 html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
+#menu{justify-content:flex-start!important}
+#menu>*:first-child{margin-top:auto}
+#menu>*:last-child{margin-bottom:auto}
 </style></head><body>
 <div id="hud"><div id="flash"></div><div id="cross"></div><div id="wait" style="display:none;position:absolute;left:0;right:0;top:22%;text-align:center;font-size:17px;font-weight:700;color:#ffb300;text-shadow:0 1px 4px #000">منتظر دوستت…</div><div id="banner" style="display:none;position:absolute;left:0;right:0;top:30%;text-align:center;font-size:42px;color:#ffb300"></div>
 <div id="sc"><div id="emb"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#0c1a2a" stroke="#4aa3ff" stroke-width="3"/><path d="M30 12l17 9v13c0 9-8 15-17 18-9-3-17-9-17-18V21z" fill="#e8eef5"/><polygon points="30,22 33,29 41,30 35,35 37,43 30,39 23,43 25,35 19,30 27,29" fill="#1d7fd8"/></svg><div id="tm">00:00</div></div>
@@ -150,7 +153,7 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 <div id="menu"><h1>STRIKE ZONE</h1><p>حالت ۲۰ در برابر ۲۰: شما + ۱۹ هم‌تیمی آبی علیه ۲۰ دشمن قرمز</p>
 <input id="nm" maxlength="14" placeholder="نام خود را بنویسید…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;margin:10px 0;width:240px">
 <div id="ros" style="display:flex;gap:28px;justify-content:center;margin:8px 0;line-height:1.7"></div>
-<button id="go" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">شروع بازی</button>
+
 <div style="margin:8px 0;display:flex;gap:12px;justify-content:center"><button id="mp" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">MP</button><button id="room" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">Room</button></div>
 <div id="rp" style="display:none;margin:6px 0;line-height:1.9">
 <div>می‌خوای چی بازی کنی؟</div>
@@ -159,6 +162,7 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 <div id="rinfo" style="color:#ffd24d;font-weight:700"></div>
 <button id="renter" style="display:none;font-size:18px;font-weight:700;padding:8px 36px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer;margin:6px 0">ورود</button><br><input id="dc" maxlength="12" placeholder="کد اتاق دوستت" autocomplete="off" style="display:none;font-size:16px;padding:8px;border-radius:8px;border:2px solid #3aa0ff;background:#111;color:#fff;text-align:center;width:200px;margin:4px 0">
 </div>
+<button id="go" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">شروع بازی</button><br><a id="apk" href="strike-zone.apk" download style="display:inline-block;font-size:16px;font-weight:700;padding:9px 22px;border:2px solid #3ddc84;border-radius:8px;color:#3ddc84;text-decoration:none;margin:8px 0">⬇ نصب برنامه اندروید (APK)</a><br>
 <p id="hint" style="color:#f88;font-size:13px">برای شروع باید نام وارد کنید</p>
 <p>W A S D حرکت · ماوس نگاه · کلیک چپ شلیک</p>
 <p>R بارگذاری مجدد · Shift دویدن · Space پرش</p>
@@ -348,6 +352,8 @@ r.on('invite',m=>{const d=m.data;if(m.isMe||!d||d.to!==lobbyMe())return;showInv(
 r.onPeers(upd);
 r.presence({n:(nm.value.trim()||'Guest').slice(0,14)});upd()}catch(e){$('cnote').textContent='چت در دسترس نیست'}})();
 $('bc').addEventListener('pointerdown',e=>{e.preventDefault();toggleC()});
+try{const ap=$('apk'),inApp=matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches;
+if(inApp)ap.style.display='none'}catch(e){}
 const mx=$('mm').getContext('2d');
 function drawMM(){const w=120,k=w/130,f=v=>(v+65)*k;mx.clearRect(0,0,w,w);mx.fillStyle='#000a';mx.fillRect(0,0,w,w);mx.fillStyle='#8a8a8a';
 for(let i=4;i<obs.length;i++){const o=obs[i];mx.fillRect(f(o.x-o.w/2),f(o.z-o.d/2),o.w*k,o.d*k)}
