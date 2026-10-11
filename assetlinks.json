@@ -1,8 +1,0 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "io.github.jeyt082_sudo.twa",
-        "sha256_cert_fingerprints": ["F5:A3:AF:69:5D:CB:D2:27:E9:2D:0E:99:C7:C1:3B:BE:A6:9E:53:97:86:B2:71:06:C6:BF:59:07:AF:14:82:07"]
-      }
-    }]
