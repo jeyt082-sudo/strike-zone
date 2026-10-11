@@ -283,10 +283,8 @@ let DP=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e})
 function inApp(){try{return matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||matchMedia('(display-mode: minimal-ui)').matches||(document.referrer||'').indexOf('android-app://io.github.jeyt082_sudo.twa')===0||/[?&]source=app/.test(location.search)}catch(e){return false}}
 function showIns(){try{if(!/Android/i.test(navigator.userAgent)||inApp()||sessionStorage.getItem('sz_skip'))return;$('ins').style.display='flex'}catch(e){}}
 $('inss').onclick=()=>{try{sessionStorage.setItem('sz_skip','1')}catch(e){}$('ins').style.display='none'};
-let insStep=0;
-$('insb').onclick=async()=>{if(DP){const p=DP;DP=null;p.prompt();try{const r=await p.userChoice;$('insm').textContent=r.outcome==='accepted'?'نصب شد! برنامه را از لیست برنامه‌های گوشی باز کن.':'نصب لغو شد.'}catch(e){}return}
-if(insStep===0){insStep=1;$('insm').textContent='Chrome الان پنجره نصب نداد. از منوی Chrome (⋮) گزینه «Install app / نصب برنامه» را بزن (نه «افزودن به صفحه اصلی»). یا دوباره دکمه را بزن تا فایل APK دانلود شود.';$('insb').textContent='⬇ دانلود APK';return}
-$('insm').textContent='فایل دانلود می‌شود؛ بعد از دانلود روی آن بزن و «نصب» را بزن.';const a=document.createElement('a');a.href='strike-zone.apk';a.download='strike-zone.apk';document.body.appendChild(a);a.click();a.remove()};
+$('insb').onclick=()=>{$('insm').textContent='فایل APK دانلود می‌شود. بعد از دانلود روی آن بزن و «نصب» را بزن. اگر هشدار آمد: «جزئیات بیشتر» ← «نصب به هر حال».';
+const a=document.createElement('a');a.href='strike-zone.apk';a.download='strike-zone.apk';document.body.appendChild(a);a.click();a.remove()};
 const nm2=$('nm2'),nok=$('nok');
 nm2.addEventListener('input',()=>{nok.disabled=!nm2.value.trim()});
 function nameOk(){const n=nm2.value.trim();if(!n)return;try{localStorage.setItem('sz_name',n)}catch(e){}nm.value=n;nm.dispatchEvent(new Event('input'));$('ns').style.display='none';showIns()}
