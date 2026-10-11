@@ -2,7 +2,7 @@
  "id": "./",
  "name": "Strike Zone",
  "short_name": "Strike Zone",
- "start_url": "./",
+ "start_url": "./?source=app",
  "scope": "./",
  "display": "fullscreen",
  "orientation": "landscape",
@@ -27,5 +27,15 @@
    "type": "image/png",
    "purpose": "maskable"
   }
- ]
+ ],
+ "description": "Strike Zone — 20v20 shooter with friends",
+ "display_override": [
+  "fullscreen",
+  "standalone"
+ ],
+ "categories": [
+  "games"
+ ],
+ "prefer_related_applications": false,
+ "lang": "fa"
 }

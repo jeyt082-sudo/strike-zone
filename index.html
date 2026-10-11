@@ -147,10 +147,11 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 <div class="tb" id="bj"><svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#dcdcdc" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9" r="4.5" fill="#dcdcdc" stroke="none"/><path d="M22 15l4 12M23 17l8 5M13 12l21 10M26 27l9 4-2 9M26 27l-9 7-8-1"/></svg></div><div class="tb" id="br">R</div><div class="tb" id="bv">FPP/TPP</div></div>
 <div id="bc"><svg viewBox="0 0 40 40" width="34" height="34" fill="#fff"><circle cx="19" cy="8" r="4"/><path d="M14 14h9l3 7-4 2 1 7h-5l-1-6-5 5-3-2 5-8z"/><rect x="6" y="16" width="24" height="3" rx="1" transform="rotate(-8 18 17)"/></svg></div>
 <div id="ns" style="position:fixed;inset:0;z-index:100;background:#0b0e12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">باید نام خود را بنویسید</div><input id="nm2" maxlength="14" placeholder="نام شما…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;width:240px"><button id="nok" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">ادامه</button></div>
+<div id="ins" style="display:none;position:fixed;inset:0;z-index:99;background:#0b0e12;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">برنامه را روی گوشی‌ات نصب کن</div><button id="insb" style="font-size:22px;font-weight:700;padding:14px 36px;border:0;border-radius:10px;background:#3ddc84;color:#000;cursor:pointer">⬇ نصب برای اندروید</button><div id="insm" style="color:#9ab;font-size:14px;min-height:20px"></div><button id="inss" style="background:none;border:0;color:#9ab;text-decoration:underline;cursor:pointer;font-size:16px">ادامه در مرورگر</button></div>
 <div id="chb">💬</div>
 <div id="inv"><div id="invt"></div><button id="invy" style="background:#3aa0ff">قبول</button><button id="invn">رد</button></div>
 <div id="chat"><div id="cnote">در حال اتصال…</div><div id="plist"></div><div id="clog"></div><div id="crow"><input id="cin" dir="auto" maxlength="200" placeholder="پیام جهانی…" autocomplete="off"><button id="csend">➤</button></div></div>
-<div id="menu"><h1>STRIKE ZONE</h1><p>حالت ۲۰ در برابر ۲۰: شما + ۱۹ هم‌تیمی آبی علیه ۲۰ دشمن قرمز</p>
+<div id="menu"><h1>STRIKE ZONE</h1><a id="apk" href="strike-zone.apk" download style="display:inline-block;font-size:16px;font-weight:700;padding:9px 22px;border:2px solid #3ddc84;border-radius:8px;color:#3ddc84;text-decoration:none;margin:4px 0 10px">⬇ نصب برنامه اندروید (APK)</a><br><p>حالت ۲۰ در برابر ۲۰: شما + ۱۹ هم‌تیمی آبی علیه ۲۰ دشمن قرمز</p>
 <input id="nm" maxlength="14" placeholder="نام خود را بنویسید…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;margin:10px 0;width:240px">
 <div id="ros" style="display:flex;gap:28px;justify-content:center;margin:8px 0;line-height:1.7"></div>
 
@@ -162,7 +163,7 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 <div id="rinfo" style="color:#ffd24d;font-weight:700"></div>
 <button id="renter" style="display:none;font-size:18px;font-weight:700;padding:8px 36px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer;margin:6px 0">ورود</button><br><input id="dc" maxlength="12" placeholder="کد اتاق دوستت" autocomplete="off" style="display:none;font-size:16px;padding:8px;border-radius:8px;border:2px solid #3aa0ff;background:#111;color:#fff;text-align:center;width:200px;margin:4px 0">
 </div>
-<button id="go" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">شروع بازی</button><br><a id="apk" href="strike-zone.apk" download style="display:inline-block;font-size:16px;font-weight:700;padding:9px 22px;border:2px solid #3ddc84;border-radius:8px;color:#3ddc84;text-decoration:none;margin:8px 0">⬇ نصب برنامه اندروید (APK)</a><br>
+<button id="go" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">شروع بازی</button><br>
 <p id="hint" style="color:#f88;font-size:13px">برای شروع باید نام وارد کنید</p>
 <p>W A S D حرکت · ماوس نگاه · کلیک چپ شلیک</p>
 <p>R بارگذاری مجدد · Shift دویدن · Space پرش</p>
@@ -278,9 +279,17 @@ if(!MP.rtype||!MP.rj){toast('اول نوع بازی و «ساخت اتاق» ی�
 const code=MP.rj==='create'?MP.newCode:$('dc').value.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,12);
 if(!code||code.length<3){toast('کد اتاق دوستت را بنویس (حداقل ۳ حرف یا عدد)');return}
 startMP(MP.rtype,code)};go.onclick=goNow;$('renter').onclick=goNow;nm.addEventListener('keydown',e=>{if(e.key==='Enter')goNow()});chk();
+let DP=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e});
+function inApp(){try{return matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||matchMedia('(display-mode: minimal-ui)').matches||(document.referrer||'').indexOf('android-app://io.github.jeyt082_sudo.twa')===0||/[?&]source=app/.test(location.search)}catch(e){return false}}
+function showIns(){try{if(!/Android/i.test(navigator.userAgent)||inApp()||sessionStorage.getItem('sz_skip'))return;$('ins').style.display='flex'}catch(e){}}
+$('inss').onclick=()=>{try{sessionStorage.setItem('sz_skip','1')}catch(e){}$('ins').style.display='none'};
+let insStep=0;
+$('insb').onclick=async()=>{if(DP){const p=DP;DP=null;p.prompt();try{const r=await p.userChoice;$('insm').textContent=r.outcome==='accepted'?'نصب شد! برنامه را از لیست برنامه‌های گوشی باز کن.':'نصب لغو شد.'}catch(e){}return}
+if(insStep===0){insStep=1;$('insm').textContent='Chrome الان پنجره نصب نداد. از منوی Chrome (⋮) گزینه «Install app / نصب برنامه» را بزن (نه «افزودن به صفحه اصلی»). یا دوباره دکمه را بزن تا فایل APK دانلود شود.';$('insb').textContent='⬇ دانلود APK';return}
+$('insm').textContent='فایل دانلود می‌شود؛ بعد از دانلود روی آن بزن و «نصب» را بزن.';const a=document.createElement('a');a.href='strike-zone.apk';a.download='strike-zone.apk';document.body.appendChild(a);a.click();a.remove()};
 const nm2=$('nm2'),nok=$('nok');
 nm2.addEventListener('input',()=>{nok.disabled=!nm2.value.trim()});
-function nameOk(){const n=nm2.value.trim();if(!n)return;try{localStorage.setItem('sz_name',n)}catch(e){}nm.value=n;nm.dispatchEvent(new Event('input'));$('ns').style.display='none'}
+function nameOk(){const n=nm2.value.trim();if(!n)return;try{localStorage.setItem('sz_name',n)}catch(e){}nm.value=n;nm.dispatchEvent(new Event('input'));$('ns').style.display='none';showIns()}
 try{const sv=localStorage.getItem('sz_name');if(sv){nm2.value=sv;nok.disabled=false;nameOk()}}catch(e){}
 nok.onclick=nameOk;nm2.addEventListener('keydown',e=>{if(e.key==='Enter')nameOk()});
 document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===ren.domElement;if(!locked&&started&&!P.dead&&!chatOpen)$('menu').style.display='flex'});
@@ -352,8 +361,7 @@ r.on('invite',m=>{const d=m.data;if(m.isMe||!d||d.to!==lobbyMe())return;showInv(
 r.onPeers(upd);
 r.presence({n:(nm.value.trim()||'Guest').slice(0,14)});upd()}catch(e){$('cnote').textContent='چت در دسترس نیست'}})();
 $('bc').addEventListener('pointerdown',e=>{e.preventDefault();toggleC()});
-try{const ap=$('apk'),inApp=matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches;
-if(inApp)ap.style.display='none'}catch(e){}
+try{if(inApp())$('apk').style.display='none'}catch(e){}
 const mx=$('mm').getContext('2d');
 function drawMM(){const w=120,k=w/130,f=v=>(v+65)*k;mx.clearRect(0,0,w,w);mx.fillStyle='#000a';mx.fillRect(0,0,w,w);mx.fillStyle='#8a8a8a';
 for(let i=4;i<obs.length;i++){const o=obs[i];mx.fillRect(f(o.x-o.w/2),f(o.z-o.d/2),o.w*k,o.d*k)}
