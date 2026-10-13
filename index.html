@@ -380,9 +380,10 @@ r.onPeers(upd);
 r.presence({n:(nm.value.trim()||'Guest').slice(0,14)});upd()}catch(e){$('cnote').textContent='چت در دسترس نیست'}})();
 $('bc').addEventListener('pointerdown',e=>{e.preventDefault();toggleC()});
 try{if(inApp())$('apk').style.display='none'}catch(e){}
-const SKIN=[{n:'پیش‌فرض',b:0x2e6fb8,g:0x1a1a1a},{n:'استتار',b:0x4a6b3a,g:0x2f3b25},{n:'طلایی',b:0xd4a017,g:0xffd24d},{n:'قرمز',b:0xb3322f,g:0x4a1c1c},{n:'سیاه',b:0x222222,g:0x000000},{n:'نئون',b:0x00c8bd,g:0xff2fa0},{n:'اسکلت سیاه',b:0x15171c,g:0x0a0a0a,k:1},
-{n:'بنفش و طلایی',b:0x6a2fa0,c:0xd4a017,g:0,t:'plates'},{n:'راه‌راه سرخ و آبی',b:0xb3322f,c:0x3a6fd0,g:0,t:'stripes'},{n:'استتار شهری',b:0x3b4048,c:0x7a8088,g:0,t:'camo'},
-{n:'مرک ۱',b:0x2a4fd0,c:0xa04fff,g:0,t:'streaks'},{n:'چارلی',b:0xe8e8e8,c:0xa0a8b0,g:0,t:'camo'},{n:'ورایت',b:0x2f5a34,c:0xe0642a,g:0,t:'plates'},{n:'اسکایلا',b:0x1c2a40,c:0x9ed0ff,g:0,t:'icy',hd:1}];
+const SKIN=[{n:'پیش‌فرض',b:0x2e6fb8,g:0x1a1a1a},{n:'گوست',b:0x15171c,g:0x0a0a0a,k:1},
+{n:'اسپیکال اپس ۵',b:0x6a2fa0,c:0xd4a017,g:0,t:'plates',h1:0x5a2490,h2:0x2a1048,v:0xd4a017},{n:'اسپیکال اپس ۵ دیاز',b:0xb3322f,c:0x3a6fd0,g:0,t:'stripes',h1:0xb3322f,h2:0x2e4f98,v:0x1a1a1a},{n:'اسپیکال اپس ۳',b:0x3b4048,c:0x7a8088,g:0,t:'camo',h1:0x3b4048,h2:0xe0b890,v:0x1b1d22},
+{n:'مرک ۱',b:0x2a4fd0,c:0xa04fff,g:0,t:'streaks',h1:0x2a4fd0,h2:0x1a1f3a,v:0xff8a2a},{n:'چارلی',b:0xe8e8e8,c:0xa0a8b0,g:0,t:'camo',h1:0xe8e8e8,h2:0xf4f4f4,v:0xcfd6dc},{n:'ورایت',b:0x2f5a34,c:0xe0642a,g:0,t:'plates',h1:0xe0642a,h2:0x1b1b1b,v:0x2f5a34},{n:'اسکایلا',b:0x1c2a40,c:0x9ed0ff,g:0,t:'icy',hd:1},
+{n:'اسپیکال اپس ۱',b:0x2a3038,c:0x5a6a78,g:0,t:'camo',h1:0x20252b,h2:0x9aa3ab,v:0x5a7ad8}];
 let cust=[];try{cust=JSON.parse(localStorage.getItem('sz_cskins')||'[]')}catch(e){}
 let _at=null,_st=null;
 function armorTex(){if(_at)return _at;const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');x.fillStyle='#14161b';x.fillRect(0,0,128,128);x.fillStyle='#262a31';x.fillRect(0,58,128,10);x.strokeStyle='#cfe21a';x.lineWidth=2;
@@ -396,13 +397,15 @@ else if(s.t==='streaks'){x.lineWidth=3;for(let i=0;i<14;i++){x.beginPath();x.mov
 else if(s.t==='icy'){x.fillStyle='#9ed0ff';x.fillRect(0,0,128,26);x.fillRect(0,100,128,28);x.fillStyle='#d8a030';for(let i=0;i<4;i++)x.fillRect(22+i*26,48,18,26);x.fillStyle='#2f4a72';x.fillRect(0,78,128,6)}
 else{x.fillRect(0,50,128,10);x.fillRect(0,92,128,6);x.lineWidth=4;x.strokeRect(10,10,108,108);for(let i=0;i<6;i++)x.fillRect(14+i*18,20,10,22)}
 return new THREE.CanvasTexture(c)}
+const _hc={};
+function headTex(s){if(_hc[s.n])return _hc[s.n];const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),h=v=>'#'+v.toString(16).padStart(6,'0');x.fillStyle=h(s.h1);x.fillRect(0,0,128,128);x.fillStyle=h(s.h2);x.fillRect(0,64,128,64);if(s.v){x.fillStyle=h(s.v);x.fillRect(10,40,108,22)}return _hc[s.n]=new THREE.CanvasTexture(c)}
 let _ht=null;
 function hairTex(){if(_ht)return _ht;const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');x.fillStyle='#e0b890';x.fillRect(0,0,128,128);x.fillStyle='#5aa8e8';x.fillRect(0,0,128,58);x.fillStyle='#9ed0ff';for(let i=0;i<8;i++)x.fillRect(6+i*16,0,5,44+(i%3)*6);return _ht=new THREE.CanvasTexture(c)}
 function paint(b,g,url,k,sk){const mats=[tor.material],cols=[b];
-const hm=k?skullTex():(sk&&sk.hd?hairTex():null);head.material.map=hm;head.material.color.set(hm?0xffffff:0xe0b890);head.material.needsUpdate=true;
+const hm=k?skullTex():(sk&&sk.h1?headTex(sk):(sk&&sk.hd?hairTex():null));head.material.map=hm;head.material.color.set(hm?0xffffff:0xe0b890);head.material.needsUpdate=true;
 if(!url){mats.forEach((mt,i)=>{mt.map=null;mt.color.set(cols[i]);mt.needsUpdate=true});if(k){tor.material.map=armorTex();tor.material.color.set(0xffffff);tor.material.needsUpdate=true}if(sk){tor.material.map=patTex(sk);tor.material.color.set(0xffffff);tor.material.needsUpdate=true}return}
 const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=128;c.getContext('2d').drawImage(im,0,0,128,128);const t=new THREE.CanvasTexture(c);mats.forEach(mt=>{mt.map=t;mt.color.set(0xffffff);mt.needsUpdate=true})};im.src=url}
-function setSkin(id){P.skinId=id;try{localStorage.setItem('sz_skin',id)}catch(e){}
+function setSkin(id){P.skinId=id;try{localStorage.setItem('sz_skin2',id)}catch(e){}
 if(id[0]==='c'){const u=cust[+id.slice(1)];if(u)paint(0,0,u)}else{const s=SKIN[+id.slice(1)]||SKIN[0];paint(s.b,s.g,null,s.k,s.t?s:null)}renderSk()}
 function renderSk(){const box=$('slist');box.replaceChildren();
 const mkb=(id,name,sw)=>{const b=document.createElement('button');b.textContent=name;b.style.cssText='margin:3px;padding:7px 12px;border-radius:8px;border:2px solid '+(P.skinId===id?'#3aa0ff':'#555')+';border-right:10px solid '+sw+';background:#222;color:#fff;font-size:14px;cursor:pointer';b.onclick=()=>setSkin(id);box.appendChild(b)};
@@ -410,7 +413,7 @@ SKIN.forEach((s,i)=>mkb('b'+i,s.n,'#'+s.b.toString(16).padStart(6,'0')));cust.fo
 $('skadd').onclick=()=>$('skf').click();
 $('skf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=128;c.getContext('2d').drawImage(im,0,0,128,128);const u=c.toDataURL('image/jpeg',.8);cust.push(u);if(cust.length>6)cust.shift();try{localStorage.setItem('sz_cskins',JSON.stringify(cust))}catch(x){}setSkin('c'+(cust.length-1))};im.src=r.result};r.readAsDataURL(f);e.target.value=''};
 $('lob').onclick=()=>{const o=$('lo').style.display==='none';$('lo').style.display=o?'block':'none';$('lob').style.background=o?'#3aa0ff':'#777';$('lob').style.color=o?'#000':'#ddd'};
-{let sv='b0';try{sv=localStorage.getItem('sz_skin')||'b0'}catch(e){}setSkin(sv)}
+{let sv='b0';try{sv=localStorage.getItem('sz_skin2')||'b0'}catch(e){}setSkin(sv)}
 const mx=$('mm').getContext('2d');
 function drawMM(){const w=120,k=w/130,f=v=>(v+65)*k;mx.clearRect(0,0,w,w);mx.fillStyle='#000a';mx.fillRect(0,0,w,w);mx.fillStyle='#8a8a8a';
 for(let i=4;i<obs.length;i++){const o=obs[i];mx.fillRect(f(o.x-o.w/2),f(o.z-o.d/2),o.w*k,o.d*k)}
