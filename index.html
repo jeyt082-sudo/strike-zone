@@ -105,6 +105,9 @@ body.touch #hp{bottom:auto;top:calc(56px + env(safe-area-inset-top,0px))}
 #inv{position:fixed;left:50%;top:calc(70px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:60;display:none;background:#000e;border:2px solid #ffc400;border-radius:10px;padding:10px 14px;direction:rtl;text-align:center}
 #inv button{border:0;border-radius:6px;padding:6px 14px;margin:6px 4px 0;font-weight:700;cursor:pointer}
 #nok:disabled{opacity:.35;cursor:not-allowed}
+@keyframes sp{to{transform:rotate(360deg)}}
+.spin{width:54px;height:54px;border:6px solid #ffffff55;border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite}
+.gb{display:block;width:100%;margin:4px 0;padding:9px;border:0;border-radius:8px;background:#333;color:#fff;font-size:15px;font-weight:700;cursor:pointer}
 #go:disabled,#mp:disabled,#room:disabled{opacity:.35;cursor:not-allowed}
 #menu{overflow:auto;position:fixed;inset:0;background:#000c;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;padding:20px}
 #menu h1{font-size:44px;margin:0 0 10px;letter-spacing:4px;color:#ffb300}
@@ -137,7 +140,7 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 #menu>*:first-child{margin-top:auto}
 #menu>*:last-child{margin-bottom:auto}
 </style></head><body>
-<div id="hud"><div id="flash"></div><div id="cross"></div><div id="wait" style="display:none;position:absolute;left:0;right:0;top:22%;text-align:center;font-size:17px;font-weight:700;color:#ffb300;text-shadow:0 1px 4px #000">منتظر دوستت…</div><div id="banner" style="display:none;position:absolute;left:0;right:0;top:30%;text-align:center;font-size:42px;color:#ffb300"></div>
+<div id="hud"><div id="flash"></div><div id="cross"></div><div id="banner" style="display:none;position:absolute;left:0;right:0;top:30%;text-align:center;font-size:42px;color:#ffb300"></div>
 <div id="sc"><div id="emb"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#0c1a2a" stroke="#4aa3ff" stroke-width="3"/><path d="M30 12l17 9v13c0 9-8 15-17 18-9-3-17-9-17-18V21z" fill="#e8eef5"/><polygon points="30,22 33,29 41,30 35,35 37,43 30,39 23,43 25,35 19,30 27,29" fill="#1d7fd8"/></svg><div id="tm">00:00</div></div>
 <div id="bars"><div class="rw"><div class="sbx bl" id="sbB">0</div><div class="bar"><b id="bB" style="background:#4aa3ff"></b></div></div><div class="rw"><div class="sbx rd" id="sbR">0</div><div class="bar"><b id="bR" style="background:#ff5a5a"></b></div></div><span id="tgt">80</span></div></div>
 <canvas id="mm" width="120" height="120" style="position:absolute;left:50%;margin-left:-60px;top:calc(76px + env(safe-area-inset-top,0px));border:2px solid #fff6;border-radius:8px"></canvas><div class="b" id="info"></div><div class="b" id="sb" style="display:none;left:12px;top:calc(150px + env(safe-area-inset-top,0px));font-size:13px;line-height:1.5;white-space:pre;direction:ltr;text-align:left"></div><div class="b" id="cam"></div>
@@ -147,7 +150,10 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 <div class="tb" id="bj"><svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#dcdcdc" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9" r="4.5" fill="#dcdcdc" stroke="none"/><path d="M22 15l4 12M23 17l8 5M13 12l21 10M26 27l9 4-2 9M26 27l-9 7-8-1"/></svg></div><div class="tb" id="br">R</div><div class="tb" id="bv">FPP/TPP</div></div>
 <div id="bc"><svg viewBox="0 0 40 40" width="34" height="34" fill="#fff"><circle cx="19" cy="8" r="4"/><path d="M14 14h9l3 7-4 2 1 7h-5l-1-6-5 5-3-2 5-8z"/><rect x="6" y="16" width="24" height="3" rx="1" transform="rotate(-8 18 17)"/></svg></div>
 <div id="ns" style="position:fixed;inset:0;z-index:100;background:#0b0e12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">باید نام خود را بنویسید</div><input id="nm2" maxlength="14" placeholder="نام شما…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;width:240px"><button id="nok" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">ادامه</button></div>
+<div id="wait" style="display:none;position:fixed;inset:0;z-index:70;background:#0f5a2b;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;text-align:center;padding:20px"><div class="spin"></div><div id="wmsg" style="font-size:22px;font-weight:700"></div><button id="wcancel" style="font-size:16px;font-weight:700;padding:8px 22px;border:2px solid #fff8;border-radius:8px;background:none;color:#fff;cursor:pointer">بازگشت به لابی</button></div>
 <div id="ins" style="display:none;position:fixed;inset:0;z-index:99;background:#0b0e12;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">برنامه را روی گوشی‌ات نصب کن</div><button id="insb" style="font-size:22px;font-weight:700;padding:14px 36px;border:0;border-radius:10px;background:#3ddc84;color:#000;cursor:pointer">⬇ نصب برای اندروید</button><div id="insm" style="color:#9ab;font-size:14px;min-height:20px"></div><button id="inss" style="background:none;border:0;color:#9ab;text-decoration:underline;cursor:pointer;font-size:16px">ادامه در مرورگر</button></div>
+<div id="gear" style="display:block;position:fixed;right:64px;top:calc(12px + env(safe-area-inset-top,0px));z-index:50;background:#000a;border:2px solid #fff6;border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer;user-select:none;-webkit-user-select:none"><svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" style="display:block"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
+<div id="gm" style="display:none;position:fixed;right:12px;top:calc(56px + env(safe-area-inset-top,0px));z-index:55;width:min(260px,86vw);max-height:80vh;overflow:auto;background:#000e;border:1px solid #fff4;border-radius:10px;padding:8px;text-align:center"><button class="gb" id="gm1">🔫 تعویض تفنگ</button><button class="gb" id="gm2">🛠 تنظیمات</button><button class="gb" id="gm3" style="color:#ff8a7a">🚪 خروج (Leave)</button><div id="gsub" style="margin-top:6px"></div></div>
 <div id="chb">💬</div>
 <div id="inv"><div id="invt"></div><button id="invy" style="background:#3aa0ff">قبول</button><button id="invn">رد</button></div>
 <div id="chat"><div id="cnote">در حال اتصال…</div><div id="plist"></div><div id="clog"></div><div id="crow"><input id="cin" dir="auto" maxlength="200" placeholder="پیام جهانی…" autocomplete="off"><button id="csend">➤</button></div></div>
@@ -235,7 +241,7 @@ function die(n,byP){scene.remove(n);const U=n.userData,a=U.team?allies:enemies,i
 score[U.team?1:0]++;if(!checkEnd())setTimeout(()=>{if(!matchOver){const q=spawnPos(U.team);mk(U.team,q[0],q[1],U.name)}},2500)}
 function checkEnd(){if(matchOver)return true;const w=score[0]>=GOAL,l=score[1]>=GOAL;if(!w&&!l)return false;matchOver=true;const bn=$('banner');bn.textContent=(w?'VICTORY ':'DEFEAT ')+score[0]+' : '+score[1];bn.style.display='block';
 setTimeout(()=>{bn.style.display='none';score=[0,0];P.kills=0;toLobby();matchOver=false},5000);return true}
-function toLobby(){MP.duel=false;MP.team=false;GOAL=80;$('tgt').textContent=80;$('wait').style.display='none';if(MP.on){try{MP.room.leave()}catch(e){}MP.on=false;MP.rem.forEach(o=>scene.remove(o.g));MP.rem.clear();$('sb').style.display='none'}
+function toLobby(){try{setGear(false)}catch(e){}MP.duel=false;MP.team=false;GOAL=80;$('tgt').textContent=80;$('wait').style.display='none';if(MP.on){try{MP.room.leave()}catch(e){}MP.on=false;MP.rem.forEach(o=>scene.remove(o.g));MP.rem.clear();$('sb').style.display='none'}
 newRound();started=false;mouseDown=false;tFire=false;tJump=false;for(const k in keys)keys[k]=0;try{document.exitPointerLock()}catch(e){}
 $('menu').style.display='flex'}
 function spDie(){score[1]++;if(checkEnd())return;const bn=$('banner');bn.textContent='YOU DIED';bn.style.display='block';
@@ -249,7 +255,7 @@ const nm=$('nm'),go=$('go');
 function ros(){const n=nm.value.trim();const col=(c,a)=>{const d=document.createElement('div');d.style.color=c;a.forEach(t=>{const r=document.createElement('div');r.textContent=t;d.appendChild(r)});return d};
 $('ros').replaceChildren(col('#6bb5ff',['تیم آبی',(n||'؟')+' (شما)',...AN.slice(0,4),'… +'+(AN.length-4)]),col('#ff6b6b',['تیم قرمز',...EN.slice(0,5),'… +'+(EN.length-5)]))}
 function chk(){const ok=!!nm.value.trim();go.disabled=!ok;$('mp').disabled=!ok;$('room').disabled=!ok;$('hint').textContent='برای شروع باید نام وارد کنید';$('hint').style.visibility=ok?'hidden':'visible';ros()}
-function begin(){const n=nm.value.trim();if(!n)return;MT=0;if(!P.lbl){P.name=n.slice(0,14);P.lbl=lbl(P.name,2);body.add(P.lbl)}started=true;$('menu').style.display='none';try{ren.domElement.requestPointerLock()}catch(e){}}
+function begin(){const n=nm.value.trim();if(!n)return;MT=0;if(!P.lbl){P.name=n.slice(0,14);P.lbl=lbl(P.name,2);body.add(P.lbl)}started=true;$('gear').style.display='block';$('menu').style.display='none';try{ren.domElement.requestPointerLock()}catch(e){}}
 const MP={on:false,duel:false,team:false,rtype:null,rj:null,newCode:'',sel:false,room:null,code:'main',t:0,sb:0,rem:new Map()};
 const mpMe=()=>{const q=MP.room.peers().find(x=>x.isMe&&x.sameTab);return q&&q.peer};
 function rmk(name,tm,sk){const g=new THREE.Group();const t=new THREE.Mesh(new THREE.BoxGeometry(.8,1.1,.5),M(tm?0x2e6fb8:(SKIN[sk]?SKIN[sk].b:0xc77a1e)));t.position.y=1.1;
@@ -261,9 +267,8 @@ function mpSpawn(){Object.assign(P,{hp:100,ammo:WPN.mag,reserve:WPN.res,reload:0
 MP.die=function(from){P.dead=true;MP.room.emit('kill',{to:from});const bn=$('banner');bn.textContent='ELIMINATED';bn.style.display='block';setTimeout(()=>{bn.style.display='none';mpSpawn()},3000)};
 function mpTick(dt){const R=MP.room,ps=R.peers(),seen=new Set(),now=performance.now();
 if(MP.duel){const alone=MP.rem.size===0,w=$('wait'),con=typeof R.connected==='function'?R.connected():true;
-if(alone&&!matchOver){MP.at=(MP.at||0)+dt;w.style.display='block';w.textContent=con?'منتظر دوستت… (کد: '+MP.code+') · تا اون موقع با بات تمرین کن':(MP.at>10?'اتصال به سرور برقرار نشد (اینترنت یا فیلترشکن؟) · با بات تمرین کن':'در حال اتصال به سرور…');
-if(MP.at>5&&!enemies.length){const q=spawnPos(0);mk(0,q[0],q[1],'Bot')}}
-else{MP.at=0;w.style.display='none';if(enemies.length&&!alone){enemies.slice().forEach(u=>scene.remove(u));enemies.length=0;score=[0,0]}}}
+if(alone&&!matchOver){MP.at=(MP.at||0)+dt;w.style.display='flex';$('wmsg').textContent=con?'در انتظار دوستت… (کد اتاق: '+MP.code+')':(MP.at>10?'اتصال به سرور برقرار نشد (اینترنت یا فیلترشکن؟)':'در حال اتصال به سرور…')}
+else{MP.at=0;w.style.display='none'}}
 for(const p of ps){if(p.isMe)continue;const q=p.presence;if(!q||typeof q.x!=='number'||typeof q.z!=='number')continue;seen.add(p.peer);
 const nmx=String(q.n||'Player').slice(0,14);let o=MP.rem.get(p.peer);
 if(!o||o.nm!==nmx||o.sk!==q.sk){if(o)scene.remove(o.g);const g=rmk(nmx,MP.team,q.sk);g.userData.peer=p.peer;g.position.set(q.x,+q.y||0,q.z);scene.add(g);o={g,nm:nmx,sk:q.sk};MP.rem.set(p.peer,o)}
@@ -297,6 +302,14 @@ function buildLo(){const box=$('wlist');box.replaceChildren();for(const k in WP)
 b.style.cssText='display:block;margin:4px auto;width:min(320px,90vw);font-size:15px;font-weight:700;padding:8px;border:0;border-radius:8px;cursor:pointer;background:'+(on?'#3aa0ff':'#777')+';color:'+(on?'#000':'#ddd');
 b.onclick=()=>{setW(k);buildLo()};box.appendChild(b)}}
 buildLo();
+let gearOpen=false,SENS=1;try{SENS=+localStorage.getItem('sz_sens')||1}catch(e){}
+function setGear(o){gearOpen=o;$('gm').style.display=o?'block':'none';$('gsub').replaceChildren();if(o){if(started)try{document.exitPointerLock()}catch(e){}}else if(started&&!document.body.classList.contains('touch'))try{ren.domElement.requestPointerLock()}catch(e){}}
+$('gear').onclick=()=>setGear(!gearOpen);
+$('gm1').onclick=()=>{const b=$('gsub');b.replaceChildren();for(const k in WP){const w=WP[k],e=document.createElement('button');e.className='gb';e.textContent=w.nm+(WP[k]===WPN?' ✓':'');e.style.background=WP[k]===WPN?'#3aa0ff':'#333';e.style.color=WP[k]===WPN?'#000':'#fff';e.onclick=()=>{setW(k);setGear(false)};b.appendChild(e)}};
+$('gm2').onclick=()=>{const b=$('gsub');b.replaceChildren();const l=document.createElement('div');l.textContent='حساسیت چرخش';const r=document.createElement('input');r.type='range';r.min='0.3';r.max='2.5';r.step='0.1';r.value=SENS;r.style.width='90%';r.oninput=()=>{SENS=+r.value;try{localStorage.setItem('sz_sens',SENS)}catch(e){}};
+const t=document.createElement('button');t.className='gb';t.textContent='نقشه کوچک: نمایش / پنهان';t.onclick=()=>{const mm=$('mm');mm.style.display=mm.style.display==='none'?'':'none'};b.append(l,r,t)};
+$('gm3').onclick=()=>{setGear(false);if(!started){toast('الان تو لابی هستی');return}toLobby()};
+$('wcancel').onclick=()=>toLobby();
 let DP=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e});
 function inApp(){try{return matchMedia('(display-mode: standalone)').matches||matchMedia('(display-mode: fullscreen)').matches||matchMedia('(display-mode: minimal-ui)').matches||(document.referrer||'').indexOf('android-app://io.github.jeyt082_sudo.twa')===0||/[?&]source=app/.test(location.search)}catch(e){return false}}
 function showIns(){try{if(!/Android/i.test(navigator.userAgent)||inApp()||sessionStorage.getItem('sz_skip'))return;$('ins').style.display='flex'}catch(e){}}
@@ -308,8 +321,8 @@ nm2.addEventListener('input',()=>{nok.disabled=!nm2.value.trim()});
 function nameOk(){const n=nm2.value.trim();if(!n)return;try{localStorage.setItem('sz_name',n)}catch(e){}nm.value=n;nm.dispatchEvent(new Event('input'));$('ns').style.display='none';showIns()}
 try{const sv=localStorage.getItem('sz_name');if(sv){nm2.value=sv;nok.disabled=false;nameOk()}}catch(e){}
 nok.onclick=nameOk;nm2.addEventListener('keydown',e=>{if(e.key==='Enter')nameOk()});
-document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===ren.domElement;if(!locked&&started&&!P.dead&&!chatOpen)$('menu').style.display='flex'});
-addEventListener('mousemove',e=>{if(!locked&&!mouseDown)return;P.yaw-=e.movementX*.0022;P.pitch=Math.max(-1.4,Math.min(1.4,P.pitch-e.movementY*.0022))});
+document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===ren.domElement;if(!locked&&started&&!P.dead&&!chatOpen&&!gearOpen)$('menu').style.display='flex'});
+addEventListener('mousemove',e=>{if(!locked&&!mouseDown)return;P.yaw-=e.movementX*.0022*SENS;P.pitch=Math.max(-1.4,Math.min(1.4,P.pitch-e.movementY*.0022*SENS))});
 addEventListener('mousedown',()=>mouseDown=true);addEventListener('mouseup',()=>mouseDown=false);
 function reload(){if(P.w||P.reload>0||P.ammo===P.mag||P.reserve<=0)return;P.reload=1.8}
 function toggleC(){P.crouch=!P.crouch;$('bc').classList.toggle('on',P.crouch)}
@@ -349,7 +362,7 @@ function hold(id,f){const b=$(id);b.addEventListener('pointerdown',e=>{e.prevent
 hold('bf',v=>tFire=v);hold('bj',v=>tJump=v);hold('br',v=>{if(v)reload()});hold('bv',v=>{if(v)P.tpp=!P.tpp});hold('bw',v=>{if(v)toggleW()});
 const noLook=t=>t&&t.closest&&t.closest('#joy,.tb,#bc,#chb,#chat,#inv,#menu,button,input');
 document.addEventListener('touchstart',e=>{for(const t of e.changedTouches){if(lid===null&&!noLook(t.target)){lid=t.identifier;lx=t.clientX;ly=t.clientY}}},{passive:false});
-document.addEventListener('touchmove',e=>{for(const t of e.changedTouches){if(t.identifier===lid){P.yaw-=(t.clientX-lx)*.006;P.pitch=Math.max(-1.4,Math.min(1.4,P.pitch-(t.clientY-ly)*.006));lx=t.clientX;ly=t.clientY}}if(lid!==null)e.preventDefault()},{passive:false});
+document.addEventListener('touchmove',e=>{for(const t of e.changedTouches){if(t.identifier===lid){P.yaw-=(t.clientX-lx)*.006*SENS;P.pitch=Math.max(-1.4,Math.min(1.4,P.pitch-(t.clientY-ly)*.006*SENS));lx=t.clientX;ly=t.clientY}}if(lid!==null)e.preventDefault()},{passive:false});
 const endT=e=>{for(const t of e.changedTouches)if(t.identifier===lid)lid=null};
 document.addEventListener('touchend',endT);document.addEventListener('touchcancel',endT);
 let chatOpen=false,unread=0,CR=null,lastSend=0;
