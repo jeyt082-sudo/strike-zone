@@ -139,7 +139,38 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 #menu{justify-content:flex-start!important}
 #menu>*:first-child{margin-top:auto}
 #menu>*:last-child{margin-bottom:auto}
+#pl{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,#0e4a7a 0%,#082a4d 55%,#051a33 100%);transition:opacity .5s;overflow:hidden}
+#pl:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#4fe0ff14 1px,transparent 1px),linear-gradient(90deg,#4fe0ff14 1px,transparent 1px);background-size:34px 34px}
+#plbox{position:relative;width:min(88vw,86vh,420px);aspect-ratio:1}
+#plsvg{position:absolute;inset:0;width:100%;height:100%}
+#plnum{position:absolute;left:0;right:0;top:34%;text-align:center;font:200 clamp(64px,22vw,120px)/1 system-ui,Arial,sans-serif;color:#5fe8ff;text-shadow:0 0 18px #4fe0ff88;direction:ltr}
+#plbarw{position:absolute;left:30%;right:30%;top:66%;height:10px;background:#cfe6f5;border:1px solid #4fe0ff}
+#plbar{height:100%;width:0;background:#2c7fc7}
+#pltxt{position:absolute;left:0;right:0;top:74%;text-align:center;color:#cfe6f5;font-size:15px;letter-spacing:1px}
 </style></head><body>
+<div id="pre" style="position:fixed;inset:0;z-index:200;background-color:#0a2748;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:26px 26px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+<svg id="preS" viewBox="-200 -200 400 400" style="position:absolute;width:min(98vw,98vh);height:min(98vw,98vh)"></svg>
+<div style="position:relative;text-align:center;direction:ltr"><div id="preN" style="font-size:min(24vw,24vh);font-weight:200;line-height:1;color:#3fe6ff;font-family:system-ui,Arial,sans-serif;text-shadow:0 0 18px #3fe6ff66">0</div>
+<div style="width:min(44vw,70vh);height:10px;border:2px solid #4aa3d8;margin:8px auto 0"><div id="preB" style="height:100%;width:0;background:#3fa8e8"></div></div>
+<div style="color:#bfe9ff;font-size:14px;margin-top:6px;font-family:system-ui,Arial,sans-serif">Loading</div></div></div>
+<script>(function(){const s=document.getElementById('preS'),N=60,ticks=[],ns='http://www.w3.org/2000/svg';
+for(let i=0;i<N;i++){const a=(130+i*(280/(N-1)))*Math.PI/180,len=14+((i*37)%5)*6,r1=150,r2=r1+len,l=document.createElementNS(ns,'line');l.setAttribute('x1',Math.cos(a)*r1);l.setAttribute('y1',Math.sin(a)*r1);l.setAttribute('x2',Math.cos(a)*r2);l.setAttribute('y2',Math.sin(a)*r2);l.setAttribute('stroke','#3fe6ff');l.setAttribute('stroke-width','3');l.setAttribute('opacity','.2');s.appendChild(l);ticks.push(l)}
+const arc=document.createElementNS(ns,'circle');arc.setAttribute('r','128');arc.setAttribute('fill','none');arc.setAttribute('stroke','#8fd0ff');arc.setAttribute('stroke-width','4');arc.setAttribute('transform','rotate(130)');arc.setAttribute('stroke-dasharray','0 805');s.appendChild(arc);
+const NN=document.getElementById('preN'),B=document.getElementById('preB');let p=0,t0=performance.now(),ready=false,done=false;
+window.__preReady=function(){ready=true};window.addEventListener('load',function(){setTimeout(function(){ready=true},300)});
+function f(now){if(done)return;const el=(now-t0)/1000;let tg=Math.min(90,el/2.6*90);if(ready&&el>1.6)tg=100;p+=(tg-p)*.12;if(tg===100&&p>99.4)p=100;const v=Math.round(p);NN.textContent=v;B.style.width=v+'%';arc.setAttribute('stroke-dasharray',(p/100*603)+' 805');for(let i=0;i<N;i++)ticks[i].setAttribute('opacity',i/N<=p/100?'1':'.2');
+if(p>=100){done=true;setTimeout(function(){const e=document.getElementById('pre');e.style.transition='opacity .4s';e.style.opacity=0;setTimeout(function(){e.remove()},450)},250);return}requestAnimationFrame(f)}
+requestAnimationFrame(f)})();</script>
+
+<div id="pl"><div id="plbox"><svg id="plsvg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="125" fill="none" stroke="#4fe0ff33" stroke-width="5" stroke-dasharray="523.6 785.4" transform="rotate(150 200 200)"/><circle id="plarc" cx="200" cy="200" r="125" fill="none" stroke="#7fd8ff" stroke-width="6" stroke-linecap="round" stroke-dasharray="0 785.4" transform="rotate(150 200 200)"/></svg><div id="plnum">0</div><div id="plbarw"><div id="plbar"></div></div><div id="pltxt">در حال بارگذاری…</div></div></div>
+<script>(function(){var el=document.getElementById('pl'),n=document.getElementById('plnum'),bar=document.getElementById('plbar'),arc=document.getElementById('plarc'),svg=document.getElementById('plsvg'),N=56,ticks=[];
+for(var i=0;i<N;i++){var a=(150+i*(240/(N-1)))*Math.PI/180,r1=150,r2=150+(i%4===0?30:18),l=document.createElementNS('http://www.w3.org/2000/svg','line');
+l.setAttribute('x1',200+Math.cos(a)*r1);l.setAttribute('y1',200+Math.sin(a)*r1);l.setAttribute('x2',200+Math.cos(a)*r2);l.setAttribute('y2',200+Math.sin(a)*r2);l.setAttribute('stroke','#4fe0ff');l.setAttribute('stroke-width',i%4===0?3:2);l.style.opacity=.25;svg.appendChild(l);ticks.push(l)}
+var v=0,t0=performance.now();
+function tick(){var t=(performance.now()-t0)/1000,target=Math.min(100,t/2.6*100);if(!window.__plReady)target=Math.min(target,92);v+=(target-v)*.2;var r=v>99.5?100:Math.round(v);
+n.textContent=r;bar.style.width=r+'%';arc.setAttribute('stroke-dasharray',(523.6*r/100)+' 785.4');for(var i=0;i<N;i++)ticks[i].style.opacity=(i/(N-1)<=r/100)?1:.25;
+if(r>=100){setTimeout(function(){el.style.opacity=0;setTimeout(function(){el.remove()},520)},250);return}requestAnimationFrame(tick)}
+tick()})();</script>
 <div id="hud"><div id="flash"></div><div id="cross"></div><div id="banner" style="display:none;position:absolute;left:0;right:0;top:30%;text-align:center;font-size:42px;color:#ffb300"></div>
 <div id="sc"><div id="emb"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#0c1a2a" stroke="#4aa3ff" stroke-width="3"/><path d="M30 12l17 9v13c0 9-8 15-17 18-9-3-17-9-17-18V21z" fill="#e8eef5"/><polygon points="30,22 33,29 41,30 35,35 37,43 30,39 23,43 25,35 19,30 27,29" fill="#1d7fd8"/></svg><div id="tm">00:00</div></div>
 <div id="bars"><div class="rw"><div class="sbx bl" id="sbB">0</div><div class="bar"><b id="bB" style="background:#4aa3ff"></b></div></div><div class="rw"><div class="sbx rd" id="sbR">0</div><div class="bar"><b id="bR" style="background:#ff5a5a"></b></div></div><span id="tgt">80</span></div></div>
@@ -149,7 +180,7 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 <div class="tb" id="bf">🔥</div><div class="tb" id="bw">🔫</div>
 <div class="tb" id="bj"><svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#dcdcdc" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9" r="4.5" fill="#dcdcdc" stroke="none"/><path d="M22 15l4 12M23 17l8 5M13 12l21 10M26 27l9 4-2 9M26 27l-9 7-8-1"/></svg></div><div class="tb" id="br">R</div><div class="tb" id="bv">FPP/TPP</div></div>
 <div id="bc"><svg viewBox="0 0 40 40" width="34" height="34" fill="#fff"><circle cx="19" cy="8" r="4"/><path d="M14 14h9l3 7-4 2 1 7h-5l-1-6-5 5-3-2 5-8z"/><rect x="6" y="16" width="24" height="3" rx="1" transform="rotate(-8 18 17)"/></svg></div>
-<div id="ns" style="position:fixed;inset:0;z-index:100;background:#0b0e12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">باید نام خود را بنویسید</div><input id="nm2" maxlength="14" placeholder="نام شما…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;width:240px"><button id="nok" disabled style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">ادامه</button></div>
+<div id="ns" style="position:fixed;inset:0;z-index:100;background:#0b0e12;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">باید نام خود را بنویسید</div><input id="nm2" maxlength="14" placeholder="نام شما…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;width:240px"><button id="nok" style="font-size:20px;font-weight:700;padding:10px 40px;border:0;border-radius:8px;background:#ffb300;color:#000;cursor:pointer">ادامه</button></div>
 <div id="wait" style="display:none;position:fixed;inset:0;z-index:70;background:#0f5a2b;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;text-align:center;padding:20px"><div class="spin"></div><div id="wmsg" style="font-size:22px;font-weight:700"></div><button id="wcancel" style="font-size:16px;font-weight:700;padding:8px 22px;border:2px solid #fff8;border-radius:8px;background:none;color:#fff;cursor:pointer">بازگشت به لابی</button></div>
 <div id="ins" style="display:none;position:fixed;inset:0;z-index:99;background:#0b0e12;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center;overflow:auto"><h1 style="color:#ffb300;letter-spacing:4px;margin:0">STRIKE ZONE</h1><div style="font-size:20px">برنامه را روی گوشی‌ات نصب کن</div><button id="insb" style="font-size:22px;font-weight:700;padding:14px 36px;border:0;border-radius:10px;background:#3ddc84;color:#000;cursor:pointer">⬇ نصب برای اندروید</button><div id="insm" style="color:#9ab;font-size:14px;min-height:20px"></div><button id="inss" style="background:none;border:0;color:#9ab;text-decoration:underline;cursor:pointer;font-size:16px">ادامه در مرورگر</button></div>
 <div id="gear" style="display:block;position:fixed;right:64px;top:calc(12px + env(safe-area-inset-top,0px));z-index:50;background:#000a;border:2px solid #fff6;border-radius:8px;padding:6px 10px;font-size:16px;cursor:pointer;user-select:none;-webkit-user-select:none"><svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" style="display:block"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
@@ -345,8 +376,7 @@ $('inss').onclick=()=>{try{sessionStorage.setItem('sz_skip','1')}catch(e){}$('in
 $('insb').onclick=()=>{$('insm').textContent='فایل APK دانلود می‌شود. بعد از دانلود روی آن بزن و «نصب» را بزن. اگر هشدار آمد: «جزئیات بیشتر» ← «نصب به هر حال».';
 const a=document.createElement('a');a.href='strike-zone.apk';a.download='strike-zone.apk';document.body.appendChild(a);a.click();a.remove()};
 const nm2=$('nm2'),nok=$('nok');
-nm2.addEventListener('input',()=>{nok.disabled=!nm2.value.trim()});
-function nameOk(){const n=nm2.value.trim();if(!n)return;try{localStorage.setItem('sz_name',n)}catch(e){}nm.value=n;nm.dispatchEvent(new Event('input'));$('ns').style.display='none';showIns()}
+function nameOk(){const n=nm2.value.trim();if(!n){toast('اول نام خودت را بنویس');nm2.focus();return}try{localStorage.setItem('sz_name',n)}catch(e){}nm.value=n;nm.dispatchEvent(new Event('input'));$('ns').style.display='none';showIns()}
 try{const sv=localStorage.getItem('sz_name');if(sv){nm2.value=sv;nok.disabled=false;nameOk()}}catch(e){}
 nok.onclick=nameOk;nm2.addEventListener('keydown',e=>{if(e.key==='Enter')nameOk()});
 document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===ren.domElement;if(!locked&&started&&!P.dead&&!chatOpen&&!gearOpen)$('menu').style.display='flex'});
@@ -519,6 +549,8 @@ $('hp').textContent=(P.name||'')+'  HP '+Math.max(0,Math.ceil(P.hp));
 $('ammo').textContent=P.w?'KNIFE':P.reload>0?'RELOADING…':'∞';
 drawMM();ren.render(scene,cam)}
 window.SKREADY=true;[...enemies,...allies].forEach(botSkin);
+window.__plReady=true;
+try{window.__preReady&&window.__preReady()}catch(e){}
 requestAnimationFrame(loop);
 </script><script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{})</script>
 </body></html>
