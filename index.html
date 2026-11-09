@@ -203,6 +203,17 @@ requestAnimationFrame(f)})();</script>
 
 <div style="margin:8px 0;display:flex;gap:12px;justify-content:center"><button id="mp" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">MP</button><button id="room" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">Room</button></div>
 <div style="margin:6px 0"><button id="ldb" style="font-size:16px;font-weight:700;padding:9px 20px;border:2px solid #3ddc84;border-radius:8px;background:#0a2a1a;color:#3ddc84;cursor:pointer">👥 دو نفره روی یک گوشی (تک‌به‌تک)</button></div>
+<details id="padhelp" style="margin:4px auto 8px;max-width:320px;text-align:right;line-height:1.9;font-size:14px;background:#0008;border:1px solid #fff3;border-radius:10px;padding:6px 12px"><summary style="cursor:pointer;font-weight:700;color:#3ddc84;text-align:center">🎮 راهنمای دسته (PS5)</summary>
+<div style="margin-top:6px"><b>فقط در حالت «دو نفره روی یک گوشی»</b></div>
+<div>• دسته را با بلوتوث به گوشی وصل کن، بعد یک دکمه‌اش را بزن.</div>
+<div>• حرکت: استیک چپ یا دکمه‌های جهت‌دار</div>
+<div>• نگاه کردن: استیک راست</div>
+<div>• شلیک: R2 یا R1</div>
+<div>• پرش: ✕ یا L1</div>
+<div>• بعد از پایان بازی: ✕ یا Options = دوباره</div>
+<div style="margin-top:6px"><b>دو دسته:</b> اولین دسته‌ای که دکمه‌ای بزند نیمه چپ (آبی) و دومی نیمه راست (نارنجی) می‌شود.</div>
+<div><b>جابه‌جایی:</b> دکمه Create (کنار تاچ‌پد) جای دسته‌ها را عوض می‌کند. با یک دسته هم بین چپ و راست جابه‌جا می‌شود.</div>
+<div>لمس صفحه هم هم‌زمان کار می‌کند.</div></details>
 <div id="rp" style="display:none;margin:6px 0;line-height:1.9">
 <div>می‌خوای چی بازی کنی؟</div>
 <button id="rt1" style="font-size:15px;font-weight:700;padding:8px 14px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer;margin:3px">تک‌به‌تک با دوست</button><button id="rt2" style="font-size:15px;font-weight:700;padding:8px 14px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer;margin:3px">۲۰ در برابر ۲۰ (دوستت هم‌تیمی)</button><button id="rt3" style="font-size:15px;font-weight:700;padding:8px 14px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer;margin:3px">۲ در برابر ۱</button>
@@ -664,8 +675,40 @@ if(r===o.model){const hs=h.object.userData&&h.object.userData.head;o.hp-=hs?60:2
 function ldKill(k,v){LD.pl[v].dead=2.2;LD.pl[v].hp=0;LD.pl[k].kills++;if(LD.pl[k].kills>=10)ldWin(k)}
 function ldWin(k){LD.won=k;LD.pl.forEach(p=>{p.ft=false;p.jmp=false});LD.bm.forEach((m,i)=>{const w=i===k;m.textContent=w?'🏆 VICTORY':'💀 DEFEAT';m.style.color=w?'#3ddc84':'#ff5a4a'});LD.bn.style.display='block'}
 function ldAgain(){LD.pl.forEach(p=>{p.kills=0;p.ft=false;p.jmp=false});ldPlace(LD.pl[0],-30,30);ldPlace(LD.pl[1],30,-30);LD.won=-1;LD.bn.style.display='none'}
+function ldPad(dt){
+const gl=navigator.getGamepads?navigator.getGamepads():[],pads=[];for(const g of gl)if(g&&g.connected)pads.push(g);
+const sn=(typeof SENS==='number'?SENS:1);LD.gpPrev=LD.gpPrev||{};LD.gpBase=LD.gpBase||{};LD.gpOn=LD.gpOn||{};LD.gpSlot=LD.gpSlot||{};const used=[0,0],live=new Set(pads.map(g=>'p'+g.index));
+for(const q in LD.gpSlot)if(!live.has(q)){delete LD.gpSlot[q];delete LD.gpBase[q];delete LD.gpOn[q];delete LD.gpPrev[q]}
+for(let r=0;r<pads.length;r++){const g=pads[r],b=g.buttons,a=g.axes,k='p'+g.index,pv=LD.gpPrev[k]||(LD.gpPrev[k]=[]);
+const std=g.mapping==='standard';
+if(!LD.gpBase[k]){LD.gpBase[k]=Array.from(a);LD.gpPrev[k]=pv;for(let n=0;n<20;n++)pv[n]=!!(b[n]&&(b[n].pressed||b[n].value>.5));continue}
+const bs=LD.gpBase[k],dn=n=>!!(b[n]&&(b[n].pressed||b[n].value>.5)),ed=n=>dn(n)&&!pv[n];
+let rxi=2,ryi=3;const tr=[];
+if(!std){const c=[];for(let n=2;n<a.length;n++){if(bs[n]<-.7)tr.push(n);else if(Math.abs(bs[n])<.3)c.push(n)}rxi=c.length>1?c[0]:-1;ryi=c.length>1?c[1]:-1}
+const ax=n=>n<0?0:((a[n]||0)-(std?0:(Math.abs(bs[n])<.3?bs[n]:0)));
+let mx=ax(0),my=ax(1),rx=ax(rxi),ry=ax(ryi);
+let any=false;for(let n=0;n<20;n++)if(dn(n))any=true;
+if(Math.abs(mx)>.6||Math.abs(my)>.6||Math.abs(rx)>.6||Math.abs(ry)>.6)any=true;
+for(const n of tr)if(a[n]>bs[n]+.5)any=true;
+if(any&&!LD.gpOn[k]){const tk=Object.values(LD.gpSlot),f=[0,1].find(x=>!tk.includes(x));if(f!==undefined){LD.gpOn[k]=1;LD.gpSlot[k]=f}}
+if(!LD.gpOn[k]){for(let n=0;n<20;n++)pv[n]=dn(n);continue}
+if(ed(8)){const mine=LD.gpSlot[k],o=Object.keys(LD.gpSlot).find(q=>q!==k);if(o!==undefined){LD.gpSlot[o]=mine;LD.gpSlot[k]=1-mine}else LD.gpSlot[k]=1-mine}
+if(LD.won>=0&&(ed(0)||ed(9)))ldAgain();
+const i=LD.gpSlot[k],p=LD.pl[i];used[i]=1;
+if(std){if(dn(14))mx=-1;if(dn(15))mx=1;if(dn(12))my=-1;if(dn(13))my=1}
+const m=Math.hypot(mx,my);
+if(m>.25){const q=Math.min(1,(m-.25)/.75)/m;p.jx=mx*q;p.jy=my*q;p.gj=true}else if(p.gj){p.jx=p.jy=0;p.gj=false}
+if(Math.abs(rx)>.2)p.yaw-=rx*dt*3.2*sn;
+if(Math.abs(ry)>.2)p.pitch=Math.max(-1.4,Math.min(1.4,p.pitch-ry*dt*2.2*sn));
+let fire=dn(7)||dn(5);for(const n of tr)if(a[n]>bs[n]+1)fire=true;
+if(fire){p.ft=true;p.gf=true}else if(p.gf){p.ft=false;p.gf=false}
+if(dn(0)||dn(4)){p.jmp=true;p.gp=true}else if(p.gp){p.jmp=false;p.gp=false}
+for(let n=0;n<20;n++)pv[n]=dn(n)}
+for(let i=0;i<2;i++){if(used[i])continue;const p=LD.pl[i];
+if(p.gj){p.jx=p.jy=0;p.gj=false}if(p.gf){p.ft=false;p.gf=false}if(p.gp){p.jmp=false;p.gp=false}}}
+addEventListener('gamepadconnected',()=>{if(LD.on){try{toast('🎮 دسته وصل شد')}catch(e){}}});
 function ldTick(dt){const W=innerWidth,H=innerHeight;
-if(H>W){LD.rot.style.display='flex';return}LD.rot.style.display='none';
+if(H>W){LD.rot.style.display='flex';return}LD.rot.style.display='none';try{ldPad(dt)}catch(e){}
 for(let i=0;i<2;i++){const p=LD.pl[i],cm=LD.cams[i];
 if(p.dead>0){p.dead-=dt;if(p.dead<=0&&LD.won<0)ldSpawn(i)}
 else if(LD.won<0){const s=Math.sin(p.yaw),c=Math.cos(p.yaw);let fx=p.jx,fz=p.jy;const l=Math.max(1,Math.hypot(fx,fz));fx/=l;fz/=l;const sp=5.5*dt;
