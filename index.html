@@ -271,6 +271,23 @@ html,body{overscroll-behavior:none;-webkit-overflow-scrolling:auto}
 #layb #layS{background:linear-gradient(180deg,#ffd24d,#c98a00);color:#1a1100}
 body.layedit #joy,body.layedit .tb,body.layedit #bc{outline:2px dashed #ffd24d;box-shadow:0 0 14px #ffd24d99;cursor:move}
 body.layedit #mic,body.layedit #gear,body.layedit #chb,body.layedit #ammo,body.layedit #hp,body.layedit #finb{outline:2px dashed #ffd24d;box-shadow:0 0 14px #ffd24d99;cursor:move}
+#menu #mapb{background:linear-gradient(180deg,#ffffff1a,#ffffff06)!important;border:1.5px solid #ffd24dbb!important;color:#ffe9a8!important;text-shadow:0 0 10px #ffb30099}
+#menu #vgm:not(:disabled){background:linear-gradient(180deg,#2d323c,#14171d)!important;border:1.5px solid #ffd24d88!important;color:#ffe9a8!important}
+#adm{background:radial-gradient(ellipse at 50% -10%,#4a3208f2,#0a0d12fa 60%),radial-gradient(#000 15%,#0000 16%) 0 0/8px 8px,radial-gradient(#ffffff14 15%,#0000 20%) 4px 5px/8px 8px,#15171b!important;box-shadow:inset 0 0 0 2px #ffd24d66,inset 0 0 0 9px #0000,inset 0 0 0 10px #ffd24d33,inset 0 0 140px #000d!important}
+.adh{font-size:24px;font-weight:900;color:#ffd24d;text-shadow:0 0 14px #ffb300;margin:14px 0 8px}
+.adh::after{content:"";display:block;width:56%;max-width:240px;height:2px;margin:8px auto 0;background:linear-gradient(90deg,#0000,#ffd24d,#0000)}
+.ads{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0 12px}
+.ads span{padding:5px 14px;border-radius:999px;border:1px solid #ffd24d66;background:#0008;color:#ffe9a8;font-size:13px;font-weight:700}
+.adr{border:1.5px solid transparent!important;background:linear-gradient(#0e131bf0,#0a0e14f0) padding-box,linear-gradient(135deg,#ffe08a,#7a5a10 45%,#ffd24d) border-box!important;box-shadow:0 8px 24px #000c!important}
+.adr.bl{background:linear-gradient(#1c0f0ff0,#120a0af0) padding-box,linear-gradient(135deg,#ff8a7a,#6a1a12 45%,#ff5a4a) border-box!important}
+.ava{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#1a1100;background:radial-gradient(circle at 35% 30%,#fff3b0,#e0a000);box-shadow:0 0 12px #ffb30077}
+.adr.bl .ava{background:radial-gradient(circle at 35% 30%,#ffb3a8,#b3231a);color:#fff}
+#adm button{border-radius:10px!important;border:1px solid #fff7!important;font-weight:800!important;box-shadow:0 4px 12px #000a,inset 0 1px 0 #fff6}
+#adm .adb{background:linear-gradient(180deg,#ff7a6a,#b3231a)!important;color:#fff!important}
+#adm .adu{background:linear-gradient(180deg,#7dffb0,#1f9d55)!important;color:#04210f!important}
+#adm button:not(.adb):not(.adu){background:linear-gradient(180deg,#fff0a8,#ffc21a 45%,#b87800)!important;color:#1a1100!important}
+#adm input{background:#ffffff10!important;border:1.5px solid #ffd24d!important;color:#fff!important;box-shadow:inset 0 2px 8px #000a,0 0 14px #ffb30033}
+.adl{border:1.5px solid transparent!important;background:linear-gradient(#17120a,#0e0a05) padding-box,linear-gradient(135deg,#ffe08a,#7a5a10 45%,#ffd24d) border-box!important;box-shadow:0 8px 24px #000c}
 </style>
 </head><body>
 <div id="pre" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background-color:#0a2748;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:26px 26px;display:flex;align-items:center;justify-content:center;overflow:hidden">
@@ -331,9 +348,9 @@ requestAnimationFrame(f)})();</script>
 <input id="nm" maxlength="14" placeholder="نام خود را بنویسید…" autocomplete="off" style="font-size:20px;padding:10px 14px;border-radius:8px;border:2px solid #ffb300;background:#111;color:#fff;text-align:center;margin:10px 0;width:240px">
 <div id="ros" style="display:flex;gap:28px;justify-content:center;margin:8px 0;line-height:1.7"></div>
 
-<div style="margin:8px 0;display:flex;gap:12px;justify-content:center"><button id="mp" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">MP</button><button id="room" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">Room</button></div>
+<div style="margin:8px 0;display:flex;gap:12px;justify-content:center"><button id="mp" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">MP</button><button id="room" disabled style="font-size:20px;font-weight:700;padding:10px 30px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">Room</button><button id="vgm" disabled style="font-size:20px;font-weight:700;padding:10px 24px;border:0;border-radius:8px;background:#777;color:#ddd;cursor:pointer">🌍 Verdgan</button></div>
 <div style="margin:6px 0"><button id="ldb" style="font-size:16px;font-weight:700;padding:9px 20px;border:2px solid #3ddc84;border-radius:8px;background:#0a2a1a;color:#3ddc84;cursor:pointer">👥 دو نفره روی یک گوشی (تک‌به‌تک)</button></div>
-<div style="margin:6px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button id="exb" style="font-size:14px;font-weight:700;padding:6px 16px;border:2px solid #6bb5ff;border-radius:8px;background:#0a1a2a;color:#6bb5ff;cursor:pointer">🧭 اکسپلور</button><button id="ldq" style="font-size:14px;font-weight:700;padding:6px 16px;border:2px solid #3ddc84;border-radius:8px;background:#0a2a1a;color:#3ddc84;cursor:pointer">🖥 کیفیت همه‌ی مودها: ۴K</button><button id="ldlim" style="font-size:14px;font-weight:700;padding:6px 16px;border:2px solid #3ddc84;border-radius:8px;background:#0a2a1a;color:#3ddc84;cursor:pointer">🎯 تا ۱۰ کشته</button></div>
+<div style="margin:6px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button id="admb" style="font-size:12px;font-weight:700;padding:5px 12px;border:1.5px solid #ffd24d88;border-radius:8px;background:#00000066;color:#ffe9a8;cursor:pointer;opacity:.7">🛡 ادمین</button><button id="exb" style="font-size:14px;font-weight:700;padding:6px 16px;border:2px solid #6bb5ff;border-radius:8px;background:#0a1a2a;color:#6bb5ff;cursor:pointer">🧭 اکسپلور</button><button id="mapb" style="display:none;font-size:14px;font-weight:700;padding:6px 16px;border:2px solid #ffd24d;border-radius:8px;background:#1a1406;color:#ffe9a8;cursor:pointer">🗺 مپ: عادی</button><button id="ldq" style="font-size:14px;font-weight:700;padding:6px 16px;border:2px solid #3ddc84;border-radius:8px;background:#0a2a1a;color:#3ddc84;cursor:pointer">🖥 کیفیت همه‌ی مودها: ۴K</button><button id="ldlim" style="font-size:14px;font-weight:700;padding:6px 16px;border:2px solid #3ddc84;border-radius:8px;background:#0a2a1a;color:#3ddc84;cursor:pointer">🎯 تا ۱۰ کشته</button></div>
 <details id="padhelp" style="margin:4px auto 8px;max-width:320px;text-align:right;line-height:1.9;font-size:14px;background:#0008;border:1px solid #fff3;border-radius:10px;padding:6px 12px"><summary style="cursor:pointer;font-weight:700;color:#3ddc84;text-align:center">🎮 راهنمای دسته (PS5)</summary>
 <div style="margin-top:6px"><b>در MP و Room و «دو نفره روی یک گوشی» کار می‌کند</b></div>
 <div>• دسته را با بلوتوث به گوشی وصل کن، بعد یک دکمه‌اش را بزن.</div>
@@ -390,6 +407,46 @@ ground.rotation.x=-Math.PI/2;scene.add(ground);
 scene.add(new THREE.GridHelper(200,100,0x3d4a32,0x4a5a3c));
 // obstacles
 const obs=[],solid=[];
+let MAPSEL='n';
+const VERD={on:false,built:false,ox:1000,half:200,cars:[],drv:null,near:null,grp:null,hitT:{}};
+function vcl(x,z){const bx=VERD.on?VERD.ox:0,bh=VERD.on?VERD.half-2:58;return[Math.max(bx-bh,Math.min(bx+bh,x)),Math.max(-bh,Math.min(bh,z))]}
+function VSP(){const o=VERD.ox;return[[o,60],[o,-60],[o+60,0],[o-60,0],[o,100],[o,-100],[o+100,0],[o-100,0]]}
+function verdBuild(){VERD.built=true;const g=VERD.grp=new THREE.Group();scene.add(g);const OX=VERD.ox,H=VERD.half;let sd=20260;const rnd=()=>{sd=(sd*1664525+1013904223)>>>0;return sd/4294967296};
+const mats={},mat=c=>mats[c]||(mats[c]=new THREE.MeshLambertMaterial({color:c}));
+const vb=(x,z,w,h,d,c)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(c));m.position.set(OX+x,h/2,z);g.add(m);obs.push({x:OX+x,z:z,w:w,d:d});solid.push(m);return m};
+const pl=(w,d,c,x,y,z)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,d),mat(c));m.rotation.x=-Math.PI/2;m.position.set(OX+x,y,z);g.add(m)};
+pl(2*H,2*H,0x6f7a55,0,0,0);pl(2*H,16,0x3a3d42,0,.03,0);pl(16,2*H,0x3a3d42,0,.04,0);
+vb(0,-H,2*H,10,2,0x555a60);vb(0,H,2*H,10,2,0x555a60);vb(-H,0,2,10,2*H,0x555a60);vb(H,0,2,10,2*H,0x555a60);
+const pal=[0x8a8f94,0x9a8d7a,0x7d8a8f,0xa39a8c,0x6f7780,0xb0a58f];
+for(let gx=-160;gx<=160;gx+=40)for(let gz=-140;gz<=140;gz+=40){if(Math.abs(gx)<20||Math.abs(gz)<20||rnd()<.14)continue;
+vb(gx+(rnd()-.5)*8,gz+(rnd()-.5)*8,14+rnd()*14,7+rnd()*18,14+rnd()*14,pal[Math.floor(rnd()*pal.length)])}
+for(let i=0;i<110;i++){const x=(rnd()-.5)*(2*H-30),z=(rnd()-.5)*(2*H-30);if(Math.abs(x)<10||Math.abs(z)<10)continue;vb(x,z,2+rnd()*3,1.5+rnd()*1.5,2+rnd()*3,0x7a6a4a)}
+vb(80,80,10,40,10,0x6a7078);vb(-80,-80,10,40,10,0x6a7078);
+const mkCar=(x,z,yaw,c)=>{const g2=new THREE.Group(),body=new THREE.Mesh(new THREE.BoxGeometry(2.2,.8,4.6),mat(c));body.position.y=.75;g2.add(body);
+const cab=new THREE.Mesh(new THREE.BoxGeometry(1.9,.7,2.3),mat(0x222a33));cab.position.set(0,1.4,.4);g2.add(cab);
+for(const sx of[-1.15,1.15])for(const sz of[-1.5,1.5]){const w=new THREE.Mesh(new THREE.CylinderGeometry(.45,.45,.35,12),mat(0x111111));w.rotation.z=Math.PI/2;w.position.set(sx,.45,sz);g2.add(w)}
+g2.position.set(OX+x,0,z);g2.rotation.y=yaw;g.add(g2);VERD.cars.push({g:g2,x:OX+x,z:z,yaw:yaw,v:0,x0:OX+x,z0:z,y0:yaw})};
+mkCar(-60,5,Math.PI/2,0xc0392b);mkCar(60,-5,-Math.PI/2,0x2c7be5);mkCar(5,-60,0,0xf1c40f);mkCar(-5,60,Math.PI,0x27ae60);mkCar(0,150,0,0x8e44ad);mkCar(0,-150,Math.PI,0xecf0f1)}
+function verdApply(on){VERD.on=!!on;if(VERD.on&&!VERD.built)verdBuild();if(!VERD.on&&VERD.drv)carExit();
+cam.far=VERD.on?420:200;cam.updateProjectionMatrix();if(scene.fog){scene.fog.near=VERD.on?120:70;scene.fog.far=VERD.on?390:190}
+if(VERD.grp)VERD.grp.visible=VERD.on;for(const c of VERD.cars){c.x=c.x0;c.z=c.z0;c.yaw=c.y0;c.v=0;c.g.position.set(c.x,0,c.z);c.g.rotation.y=c.yaw}
+const b=document.getElementById('carb');if(b)b.style.display='none'}
+function carBtn(){let b=document.getElementById('carb');if(!b){b=document.createElement('button');b.id='carb';b.style.cssText='position:fixed;left:50%;bottom:34%;transform:translateX(-50%);z-index:46;display:none;padding:10px 22px;background:linear-gradient(180deg,#4aa3ff,#1c5fb3);color:#fff;border:2px solid #ffd24d;border-radius:12px;font-weight:900;font-size:18px;cursor:pointer;box-shadow:0 0 18px #3aa0ffaa';b.onclick=carAct;document.body.appendChild(b)}return b}
+function carAct(){if(VERD.drv){carExit();return}const c=VERD.near;if(c&&!P.dead){VERD.drv=c;c.v=0}}
+function carExit(){const c=VERD.drv;if(!c)return;VERD.drv=null;c.v=0;P.x=c.x-Math.cos(c.yaw)*2.8;P.z=c.z+Math.sin(c.yaw)*2.8;collide(P,.5);P.y=0;P.vy=0}
+function carTick(dt){const b=carBtn();if(!VERD.on||!started||P.dead||MP.waiting){b.style.display='none';if(VERD.drv&&P.dead)carExit();return}
+if(!VERD.drv){let best=null,bd=4;for(const c of VERD.cars){const d=Math.hypot(P.x-c.x,P.z-c.z);if(d<bd){bd=d;best=c}}VERD.near=best;b.style.display=best?'block':'none';b.textContent='🚗 سوار شو';return}
+const c=VERD.drv;b.style.display='block';b.textContent='🚪 پیاده شو';
+const st=jx+gpx+(keys.KeyD?1:0)-(keys.KeyA?1:0),th=Math.max(-1,Math.min(1,-(jy+gpy)+(keys.KeyW?1:0)-(keys.KeyS?1:0)));
+jx=jy=0;gpx=gpy=0;tFire=false;gpF=false;tJump=false;gpJ=false;mouseDown=false;
+if(Math.abs(th)>.1)c.v+=th*((th>0)===(c.v>=0)?16:30)*dt;else c.v-=Math.sign(c.v)*Math.min(Math.abs(c.v),6*dt);
+c.v=Math.max(-8,Math.min(30,c.v));
+c.yaw-=Math.max(-1,Math.min(1,st))*dt*1.7*Math.min(1,Math.abs(c.v)/6)*(c.v>=0?1:-1);
+const nx=c.x-Math.sin(c.yaw)*c.v*dt,nz=c.z-Math.cos(c.yaw)*c.v*dt,p={x:nx,z:nz};collide(p,2.2);if(Math.hypot(p.x-nx,p.z-nz)>.02)c.v*=.35;
+const q=vcl(p.x,p.z);c.x=q[0];c.z=q[1];c.g.position.set(c.x,0,c.z);c.g.rotation.y=c.yaw;
+P.x=c.x;P.z=c.z;P.y=0;P.vy=0;P.yaw=c.yaw;
+if(Math.abs(c.v)>6){for(const u of enemies.slice())if(Math.hypot(u.position.x-c.x,u.position.z-c.z)<2.4){u.userData.hp=0;die(u,true)}
+if(MP.on){const now=performance.now();for(const [pid,o] of MP.rem){if(o.al||!o.g||o.g.visible===false)continue;if(Math.hypot(o.g.position.x-c.x,o.g.position.z-c.z)<2.4&&now-(VERD.hitT[pid]||0)>600){VERD.hitT[pid]=now;try{MP.room.emit('hit',{to:pid,d:90})}catch(e){}}}}}}
 const _bt={};
 function boxTex(c){if(_bt[c])return _bt[c];const cv=document.createElement('canvas');cv.width=cv.height=Math.max(128,TS/2);const x=cv.getContext('2d');x.scale(cv.width/64,cv.width/64);x.fillStyle='#'+c.toString(16).padStart(6,'0');x.fillRect(0,0,64,64);x.strokeStyle='rgba(0,0,0,.35)';x.lineWidth=3;x.strokeRect(2,2,60,60);x.lineWidth=2;for(let i=1;i<4;i++){x.beginPath();x.moveTo(0,i*16);x.lineTo(64,i*16);x.stroke()}x.fillStyle='rgba(255,255,255,.08)';for(let i=0;i<60;i++)x.fillRect(Math.random()*64,Math.random()*64,2,2);return _bt[c]=CT(cv)}
 function box(x,z,w,h,d,c){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),(w>20||d>20)?M(c):new THREE.MeshLambertMaterial({map:boxTex(c)}));m.position.set(x,h/2,z);m.castShadow=true;m.receiveShadow=true;scene.add(m);obs.push({x,z,w,d});solid.push(m)}
@@ -434,10 +491,10 @@ const ar=new THREE.Mesh(new THREE.BoxGeometry(.22,.75,.22),t.material),ar2=ar.cl
 g.add(t,l,h,gn,ar,ar2,hm);if(name)g.add(lbl(name,team));g.position.set(x,0,z);
 g.userData={hp:60,cd:1+Math.random()*2,sp:3+Math.random()*1.5+wave*.15,team,name};scene.add(g);(team?allies:enemies).push(g);if(window.SKREADY)botSkin(g)}
 function newRound(){[...enemies,...allies].forEach(u=>scene.remove(u));enemies.length=0;allies.length=0;bullets.forEach(b=>scene.remove(b.m));bullets.length=0;
-Object.assign(P,{x:0,z:22,y:0,vy:0,hp:100,ammo:WPN.mag,reserve:WPN.res,reload:0,dead:false,yaw:0,pitch:0});
-AN.forEach((nme,i)=>mk(1,(i-9)*3,25+(i%2)*2,nme));EN.forEach((nme,i)=>mk(0,(i-9.5)*3,-24-(i%2)*3,nme));roundOver=false}
+Object.assign(P,{x:VERD.on?VERD.ox:0,z:VERD.on?175:22,y:0,vy:0,hp:100,ammo:WPN.mag,reserve:WPN.res,reload:0,dead:false,yaw:0,pitch:0});
+AN.forEach((nme,i)=>mk(1,(VERD.on?VERD.ox:0)+(i-9)*3,(VERD.on?178:25)+(i%2)*2,nme));EN.forEach((nme,i)=>mk(0,(VERD.on?VERD.ox:0)+(i-9.5)*3,(VERD.on?-178:-24)-(i%2)*3,nme));roundOver=false}
 let matchOver=false,MT=0,GOAL=80;
-function spawnPos(team){return team?[(Math.random()-.5)*56,25]:[(Math.random()-.5)*56,-24]}
+function spawnPos(team){const o=VERD.on?VERD.ox:0,zz=VERD.on?178:25;return team?[o+(Math.random()-.5)*56,zz]:[o+(Math.random()-.5)*56,-zz+1]}
 function die(n,byP){scene.remove(n);const U=n.userData,a=U.team?allies:enemies,i=a.indexOf(n);if(i>=0)a.splice(i,1);if(byP)P.kills++;
 score[U.team?1:0]++;if(!checkEnd())setTimeout(()=>{if(!matchOver){const q=spawnPos(U.team);mk(U.team,q[0],q[1],U.name)}},2500)}
 function finish(w){matchOver=true;MP.end=w?1:2;const bn=$('banner');bn.textContent=(w?'VICTORY ':'DEFEAT ')+score[0]+' : '+score[1];bn.style.display='block';
@@ -445,7 +502,7 @@ setTimeout(()=>{bn.style.display='none';score=[0,0];P.kills=0;toLobby();matchOve
 function checkEnd(){if(matchOver)return true;const w=score[0]>=GOAL,l=score[1]>=GOAL;if(!w&&!l)return false;
 if(MP.on&&(MP.team||MP.duel)&&MP.room){try{MP.room.emit('end',{w:w?1:0}).catch(()=>{})}catch(e){}}
 finish(w);return true}
-function toLobby(){try{vcAll()}catch(e){}INGAME=false;try{applyRatio(QHI);ren.setSize(innerWidth,innerHeight)}catch(e){}MP.waiting=false;MP.met=false;MP.end=0;try{setGear(false)}catch(e){}MP.duel=false;MP.team=false;MP.tvo=false;MP.myTeam=0;MP.hpMax=100;GOAL=80;$('tgt').textContent=80;$('wait').style.display='none';if(MP.on){try{MP.room.leave()}catch(e){}MP.on=false;MP.rem.forEach(o=>scene.remove(o.g));MP.rem.clear();$('sb').style.display='none'}
+function toLobby(){zoneEnd();verdApply(false);try{vcAll()}catch(e){}INGAME=false;try{applyRatio(QHI);ren.setSize(innerWidth,innerHeight)}catch(e){}MP.waiting=false;MP.met=false;MP.end=0;try{setGear(false)}catch(e){}MP.duel=false;MP.team=false;MP.tvo=false;MP.myTeam=0;MP.hpMax=100;GOAL=80;$('tgt').textContent=80;$('wait').style.display='none';if(MP.on){try{MP.room.leave()}catch(e){}MP.on=false;MP.rem.forEach(o=>scene.remove(o.g));MP.rem.clear();$('sb').style.display='none'}
 newRound();started=false;mouseDown=false;tFire=false;tJump=false;for(const k in keys)keys[k]=0;try{document.exitPointerLock()}catch(e){}
 $('menu').style.display='flex'}
 function spDie(){if(!MP.tvo){score[1]++;if(checkEnd())return}const bn=$('banner');bn.textContent='YOU DIED';bn.style.display='block';
@@ -497,7 +554,7 @@ try{VC.stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation
 VC.on=true;VC.t=0;b.classList.add('on')}
 else{VC.on=false;b.classList.remove('on');if(VC.stream){VC.stream.getTracks().forEach(t=>t.stop());VC.stream=null}for(const id of [...VC.out.keys()])vclose(id,'out')}}
 $('mic').onclick=()=>setMic(!VC.on);
-function mpSpawn(){const tv=MP.tvo;Object.assign(P,{hp:MP.hpMax||100,ammo:WPN.mag,reserve:WPN.res,reload:0,dead:false,y:0,vy:0,x:(Math.random()-.5)*(tv?40:90),z:tv?(MP.myTeam===1?-40:40):(Math.random()-.5)*90});if(tv)P.yaw=MP.myTeam===1?Math.PI:0}
+function mpSpawn(){const tv=MP.tvo;Object.assign(P,{hp:MP.hpMax||100,ammo:WPN.mag,reserve:WPN.res,reload:0,dead:false,y:0,vy:0,x:(VERD.on?VERD.ox:0)+(Math.random()-.5)*(tv?40:90),z:VERD.on?(tv?(MP.myTeam===1?-175:175):(Math.random()<.5?-175:175)+(Math.random()-.5)*20):tv?(MP.myTeam===1?-40:40):(Math.random()-.5)*90});if(tv)P.yaw=MP.myTeam===1?Math.PI:0}
 MP.die=function(from){P.dead=true;MP.room.emit('kill',{to:from});const bn=$('banner');bn.textContent='ELIMINATED';bn.style.display='block';setTimeout(()=>{bn.style.display='none';mpSpawn()},3000)};
 function mpTick(dt){const R=MP.room,ps=R.peers(),seen=new Set(),now=performance.now();
 vcSync(now);
@@ -516,13 +573,13 @@ for(const [id,o] of [...MP.rem])if(!seen.has(id)){scene.remove(o.g);MP.rem.delet
 if(now-MP.t>50){MP.t=now;R.presence({n:P.name,x:+P.x.toFixed(2),y:+P.y.toFixed(2),z:+P.z.toFixed(2),yw:+P.yaw.toFixed(2),d:P.dead,k:P.kills,e:MP.end||0,tm:MP.myTeam||0,sk:(P.skinId&&P.skinId[0]==='b')?+P.skinId.slice(1):(P.skinId&&P.skinId[0]==='c'?-2:-1)});
 if(P.skinId&&P.skinId[0]==='c'&&MP.mini&&now-MP.skT>4000){MP.skT=now;R.emit('skin',{u:MP.mini}).catch(()=>{})}}
 if(now-MP.sb>500){MP.sb=now;const rows=[[P.name+' (you)',P.kills],...[...seen].map(id=>{const q=ps.find(x=>x.peer===id).presence;return [String(q.n||'Player').slice(0,14),+q.k||0]})].sort((a,b)=>b[1]-a[1]);$('sb').textContent='MP · '+MP.code+'\n'+rows.map(r=>r[0]+'  '+r[1]).join('\n')}}
-async function startMP(kind,rcode){const duel=kind==='duel',team=kind==='team',tvo=kind==='tvo';const n=nm.value.trim();if(!n)return;const h=$('hint');
-const fail=()=>{toast('MP در دسترس نیست: صفحه باید با حساب واردشده claude.ai (عضو سازمان یا مهمان دعوت‌شده) باز شود')};
-try{const r=window.claude&&await claude.use('room');if(!r)return fail();let code=rcode||'main';MP.code=code;MP.room=await r.join((duel?'d-':team?'t-':tvo?'v-':'g-')+code)}catch(e){return fail()}
+async function startMP(kind,rcode){if(isBanned()){banScreen();return}const duel=kind==='duel',team=kind==='team',tvo=kind==='tvo';const n=nm.value.trim();if(!n)return;const h=$('hint');
+const fail=()=>{verdApply(false);toast('MP در دسترس نیست: صفحه باید با حساب واردشده claude.ai (عضو سازمان یا مهمان دعوت‌شده) باز شود')};
+try{const r=window.claude&&await claude.use('room');if(!r)return fail();let code=rcode||'main';MP.code=code;verdApply(MAPSEL==='v');MP.room=await r.join((duel?'d-':team?'t-':tvo?'v-':'g-')+(MAPSEL==='v'?'vg':'')+code)}catch(e){return fail()}
 const R=MP.room;
 if(tvo){MP.myTeam=MP.pickTeam||2;R.presence({tm:MP.myTeam,n:n.slice(0,14)})}
 if(duel||team||tvo){await new Promise(z=>setTimeout(z,700));const ps0=R.peers();let full=ps0.length>(tvo?3:2);if(tvo){const mt=ps0.filter(p=>!p.isMe&&p.presence&&p.presence.tm===MP.myTeam).length;if(mt>=(MP.myTeam===1?1:2))full=true}
-if(full){try{R.leave()}catch(e){}toast(tvo?'این تیم پر است؛ تیم دیگر را انتخاب کن یا کد دیگری بزن':'اتاق پر است، کد دیگه‌ای بزن');return}}
+if(full){verdApply(false);try{R.leave()}catch(e){}toast(tvo?'این تیم پر است؛ تیم دیگر را انتخاب کن یا کد دیگری بزن':'اتاق پر است، کد دیگه‌ای بزن');return}}
 R.on('hit',m=>{if(m.isMe||!m.data||P.dead)return;if(m.data.to===mpMe()){const so=MP.rem.get(m.peer);if(so&&!los(so.g.position.x,so.g.position.z,P.x,P.z))return;hurt(Math.min(100,Math.max(0,+m.data.d||0)),m.peer)}});
 R.on('kill',m=>{if(!m.isMe&&m.data&&m.data.to===mpMe()){P.kills++;if(MP.duel){score[0]++;checkEnd()}}});
 R.on('voice',onVoice);
@@ -648,17 +705,64 @@ cb.onclick=()=>setChat(!chatOpen);$('csend').onclick=sendChat;
 ci.addEventListener('keydown',e=>{if(e.key==='Enter')sendChat();if(e.key==='Escape')setChat(false)});
 const lobbyMe=()=>{const q=CR&&CR.peers().find(x=>x.isMe&&x.sameTab);return q&&q.peer};
 function toast(t){const bx=$('inv');$('invt').textContent=t;$('invy').style.display=$('invn').style.display='none';bx.style.display='block';clearTimeout(showInv.t);showInv.t=setTimeout(()=>bx.style.display='none',4500)}
-function updOnl(r){const o=$('onl');let a=[];try{a=r.peers().filter(p=>!p.isMe&&p.presence&&p.presence.n)}catch(e){}if(!a.length){o.className='';o.textContent='⚪ الان کسی آنلاین نیست';o.style.display='inline-block';return}o.className='on';o.textContent='🟢 '+a.length+' نفر آنلاین: '+String(a[0].presence.n).slice(0,14)+(a.length>1?' و '+(a.length-1)+' نفر دیگر':'');o.style.display='inline-block'}
-function renderPl(){const box=$('plist');box.replaceChildren();const seen=new Set();for(const p of (CR?CR.peers():[])){if(p.isMe||p.kind!=='viewer')continue;const q=p.presence||{},d=document.createElement('div'),sp=document.createElement('span'),b=document.createElement('button');d.className='pr';sp.textContent=String(q.n||'Player').slice(0,14);b.textContent='دعوت';b.onclick=()=>{CR.emit('invite',{to:p.peer,f:lobbyMe(),n:(P.name||nm.value.trim()||'Guest').slice(0,14),mp:MP.on?1:0,x:P.x,z:P.z}).catch(()=>{});b.textContent='✓'};seen.add(sp.textContent);d.append(sp,b);box.appendChild(d)}
+function updOnl(r){const o=$('onl');let a=[];try{a=r.peers().filter(p=>!p.isMe&&p.presence&&p.presence.n&&!XB.includes(p.presence.u))}catch(e){}if(!a.length){o.className='';o.textContent='⚪ الان کسی آنلاین نیست';o.style.display='inline-block';return}o.className='on';o.textContent='🟢 '+a.length+' نفر آنلاین: '+String(a[0].presence.n).slice(0,14)+(a.length>1?' و '+(a.length-1)+' نفر دیگر':'');o.style.display='inline-block'}
+function renderPl(){const box=$('plist');box.replaceChildren();const seen=new Set();for(const p of (CR?CR.peers():[])){if(p.isMe||p.kind!=='viewer')continue;if(XB.includes((p.presence||{}).u))continue;const q=p.presence||{},d=document.createElement('div'),sp=document.createElement('span'),b=document.createElement('button');d.className='pr';sp.textContent=String(q.n||'Player').slice(0,14);b.textContent='دعوت';b.onclick=()=>{CR.emit('invite',{to:p.peer,f:lobbyMe(),n:(P.name||nm.value.trim()||'Guest').slice(0,14),mp:MP.on?1:0,x:P.x,z:P.z}).catch(()=>{});b.textContent='✓'};seen.add(sp.textContent);d.append(sp,b);box.appendChild(d)}
 if(MP.on)for(const [,o] of MP.rem){if(seen.has(o.nm))continue;seen.add(o.nm);const d=document.createElement('div'),sp=document.createElement('span');d.className='pr';sp.textContent='🎮 '+o.nm+' (تو بازی)';d.appendChild(sp);box.appendChild(d)}
 if(!box.children.length)box.textContent='بازیکن دیگری آنلاین نیست'}
+const APUB={"kty": "EC", "x": "odtTl8yqrXvGmYhD1Pu-4Aclw2MSRxXAqBl9hBOoTiw", "y": "qqso_szuZrAbyOsYk2NUAnCNr4Y6uoLA95tyyQ-N1M0", "crv": "P-256"},AWRAP='ipLx5cDFMQE2KV7itjnfurihEG8T1+cfi4YVE0VKnCkTnnXi2LUyZBcBm+GYNkfldOW0fpfsn+I2YPCUCHsR4GIByvKCU+M8zkl/VtXb4maxV3DIUE2ZW+ItO/R3ZKWCGUDk2TiO/LJow617tU/koKS764+MP4+xfzQqznB+Y+wNKGv/Weu6znvCGUpWbf2ZJUCsE/jjlQwjwg3jHrSSY3NuowP/g53YhmIv9byb/FrJkIb+FlHDpgeiv1yjVDgnlC3XRiz0u1LIDy/r0s5pluYd5Z/UD1NFp//dpr5oGf0RXAX9rmVGI015yFAVrfYpViitRzXP+zpdQA==';let XB=[];try{XB=JSON.parse(localStorage.getItem('sz_bl')||'[]')}catch(e){}if(!Array.isArray(XB))XB=[];
+let MEM={};try{MEM=JSON.parse(localStorage.getItem('sz_mem')||'{}')||{}}catch(e){}
+const ADM={on:false,rb:0,k:null,seen:null};
+const hexb=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+async function sha(t){return hexb(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)))}
+const b64u=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
+async function admLogin(pw){try{const w=b64u(AWRAP),base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:w.slice(0,16),iterations:150000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+const jw=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:w.slice(16,28)},key,w.slice(28))));
+ADM.k=await crypto.subtle.importKey('jwk',jw,{name:'ECDSA',namedCurve:'P-256'},false,['sign']);return true}catch(e){if(e&&e.name==='OperationError')return false;throw e}}
+async function hmac(k,m){const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(k),{name:'HMAC',hash:'SHA-256'},false,['sign']);return hexb(await crypto.subtle.sign('HMAC',key,new TextEncoder().encode(m)))}
+function xbsave(){try{localStorage.setItem('sz_bl',JSON.stringify(XB.slice(-300)))}catch(e){}}
+function isBanned(){try{return localStorage.getItem('sz_banned')==='1'}catch(e){return false}}
+function banScreen(){let e=document.getElementById('banned');if(isBanned()){if(!e){e=document.createElement('div');e.id='banned';e.style.cssText='position:fixed;inset:0;z-index:99999;background:#0b0e12;color:#ff8a7a;display:flex;align-items:center;justify-content:center;text-align:center;font:800 22px system-ui;padding:30px;line-height:2';e.textContent='⛔ حساب شما توسط ادمین مسدود شده است.';document.body.appendChild(e)}}else if(e)e.remove()}
+async function banSend(type,u){if(!ADM.k)return;const t=Date.now(),sg=hexb(await crypto.subtle.sign({name:'ECDSA',hash:'SHA-256'},ADM.k,new TextEncoder().encode(type+'|'+u+'|'+t)));CR.emit(type,{u:u,t:t,s:sg}).catch(()=>{})}
+async function banRecv(type,d){try{if(!d||typeof d.u!=='string'||typeof d.s!=='string'||Math.abs(Date.now()-(+d.t||0))>600000)return;if(!/^[0-9a-f]{128}$/.test(d.s))return;const pk=await crypto.subtle.importKey('jwk',APUB,{name:'ECDSA',namedCurve:'P-256'},false,['verify']);if(!(await crypto.subtle.verify({name:'ECDSA',hash:'SHA-256'},pk,Uint8Array.from(d.s.match(/../g),h=>parseInt(h,16)),new TextEncoder().encode(type+'|'+d.u+'|'+d.t))))return;
+const on=type==='ban';XB=XB.filter(z=>z!==d.u);if(on)XB.push(d.u);xbsave();
+if(d.u===uid()){try{localStorage.setItem('sz_banned',on?'1':'0')}catch(e){}banScreen();banPres(on)}XP=XP.filter(z=>!XB.includes(z.u));xsave()}catch(e){}}
+function banPres(on){try{if(on){if(MP.on)toLobby();if(CR)CR.presence({n:null,u:null})}else if(CR)CR.presence({n:nm.value.trim().slice(0,14),u:uid()})}catch(e){}}
+function memSeen(){try{for(const p of CR.peers()){const q=p.presence;if(!p.isMe&&q&&typeof q.u==='string'&&q.n)MEM[q.u]={n:String(q.n).slice(0,14),t:Date.now()}}localStorage.setItem('sz_mem',JSON.stringify(MEM))}catch(e){}}
+let ALOG=[];try{ALOG=JSON.parse(localStorage.getItem('sz_alog')||'[]')}catch(e){}if(!Array.isArray(ALOG))ALOG=[];
+function admWatch(){if(!ADM.on||!CR)return;const cur=new Map();try{for(const p of CR.peers()){const q=p.presence;if(!p.isMe&&q&&typeof q.u==='string'&&q.n)cur.set(q.u,String(q.n).slice(0,14))}}catch(e){return}
+if(ADM.seen){for(const [u,n] of cur){if(ADM.seen.has(u))continue;const bl=XB.includes(u);ALOG.unshift({u:u,n:n,t:Date.now(),b:bl?1:0});ALOG=ALOG.slice(0,30);
+try{localStorage.setItem('sz_alog',JSON.stringify(ALOG))}catch(e){}try{toast((bl?'⛔ مسدودشده «':'🟢 «')+n+'» وارد شد')}catch(e){}try{navigator.vibrate&&navigator.vibrate(120)}catch(e){}if(bl)banSend('ban',u);
+const ad=document.getElementById('adm');if(ad)admDraw(ad)}}ADM.seen=cur}
+function admTick(){admWatch();if(!ADM.on||!CR)return;const now=Date.now();if(now-ADM.rb<60000)return;ADM.rb=now;for(const u of XB)banSend('ban',u)}
+function admOpen(){let e=document.getElementById('adm');if(e)e.remove();e=document.createElement('div');e.id='adm';e.style.cssText='position:fixed;inset:0;z-index:97;background:#0b0e12f5;color:#fff;overflow:auto;padding:16px;text-align:center;font-family:system-ui';document.body.appendChild(e);
+if(!ADM.on){const i=document.createElement('input');i.type='password';i.placeholder='رمز ادمین';i.style.cssText='font-size:18px;padding:10px;border-radius:10px;border:1.5px solid #ffd24d;background:#111;color:#fff;text-align:center;margin:60px 6px 10px';
+const b=document.createElement('button'),x=document.createElement('button');b.textContent='ورود';x.textContent='✕';b.style.cssText=x.style.cssText='font-size:16px;padding:10px 18px;border:0;border-radius:10px;background:#ffb300;font-weight:800;cursor:pointer;margin:4px';
+b.onclick=async()=>{try{if(await admLogin(i.value)){ADM.on=true;ADM.rb=0;admOpen()}else{i.value='';i.placeholder='رمز اشتباه است'}}catch(er){i.value='';i.placeholder='نیاز به اتصال https'}};x.onclick=()=>e.remove();const ht=document.createElement('div');ht.className='adh';ht.textContent='♛ ورود ادمین';e.append(ht,i,document.createElement('br'),b,x);return}
+admDraw(e)}
+function admDraw(e){e.replaceChildren();const h=document.createElement('div');h.textContent='♛ پنل ادمین';h.className='adh';e.appendChild(h);
+if(ALOG.length){const lg=document.createElement('div');lg.style.cssText='max-width:460px;margin:8px auto;padding:8px 12px;border-radius:12px;text-align:right;font-size:13px;line-height:1.9';lg.className='adl';
+const t0=document.createElement('b');t0.textContent='🔔 آخرین ورودها';t0.style.color='#ffd24d';lg.appendChild(t0);
+for(const a of ALOG.slice(0,8)){const r=document.createElement('div');const d=new Date(a.t);r.textContent=(a.b?'⛔ ':'🟢 ')+a.n+' · '+d.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});lg.appendChild(r)}e.appendChild(lg)}
+const on=new Set();try{for(const p of CR.peers())if(!p.isMe&&p.presence&&p.presence.u)on.add(p.presence.u)}catch(er){}
+const ids=[...new Set([...Object.keys(MEM),...XB])].sort((a,b)=>(on.has(b)-on.has(a))||((MEM[b]?MEM[b].t:0)-(MEM[a]?MEM[a].t:0)));
+{const st=document.createElement('div');st.className='ads';for(const t of ['🟢 '+[...on].filter(u=>!XB.includes(u)).length+' آنلاین','👥 '+ids.length+' عضو','⛔ '+XB.length+' مسدود']){const sp=document.createElement('span');sp.textContent=t;st.appendChild(sp)}e.appendChild(st)}
+if(!ids.length){const t=document.createElement('div');t.textContent='هنوز عضوی دیده نشده. بازیکن‌ها وقتی آنلاین بشن اینجا میان.';t.style.color='#999';e.appendChild(t)}
+for(const u of ids){const r=document.createElement('div');r.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:8px;max-width:460px;margin:8px auto;padding:10px 14px;border:1px solid #fff3;border-radius:12px;background:#ffffff0d';
+const nm2=document.createElement('div');nm2.style.cssText='text-align:right;flex:1;min-width:0;overflow:hidden';const m=MEM[u],bn=XB.includes(u);
+nm2.textContent=(on.has(u)&&!bn?'🟢 ':'⚪ ')+(m?m.n:'؟')+' · '+u.slice(0,4)+(bn?' · ⛔ مسدود':'');if(bn)nm2.style.color='#ff8a7a';r.className='adr'+(bn?' bl':'');const av=document.createElement('div');av.className='ava';av.textContent=(m?m.n:'؟').slice(0,1).toUpperCase();
+const b=document.createElement('button');b.textContent=bn?'✅ رفع مسدودی':'⛔ مسدود';b.style.cssText='padding:8px 12px;border:0;border-radius:8px;font-weight:800;cursor:pointer;background:'+(bn?'#3ddc84':'#ff5a4a')+';color:#000';
+b.onclick=async()=>{if(XB.includes(u)){XB=XB.filter(z=>z!==u);xbsave();try{await banSend('unban',u)}catch(er){}}else{XB.push(u);XP=XP.filter(z=>z.u!==u);xbsave();xsave();try{await banSend('ban',u)}catch(er){}}admDraw(e)};
+b.className=bn?'adu':'adb';r.append(av,nm2,b);e.appendChild(r)}
+const n=document.createElement('div');n.textContent='مسدودسازی با پیام امضاشده به همه‌ی بازیکن‌های آنلاین می‌رسه. اگه کاربر آفلاین باشه، وقتی آنلاین شد (و تو این پنل باز باشی) اعمال می‌شه.';n.style.cssText='font-size:12px;color:#888;margin:12px auto;max-width:420px;line-height:1.8';e.appendChild(n);
+const rf=document.createElement('button'),cl=document.createElement('button');rf.textContent='🔄';cl.textContent='خروج';rf.style.cssText=cl.style.cssText='padding:10px 20px;border:0;border-radius:10px;background:#ffb300;font-weight:800;cursor:pointer;margin:4px';rf.onclick=()=>admDraw(e);cl.onclick=()=>e.remove();e.append(rf,cl)}
 let XP=[],XH=[];try{XP=JSON.parse(localStorage.getItem('sz_xp')||'[]');XH=JSON.parse(localStorage.getItem('sz_xh')||'[]')}catch(x){}
 if(!Array.isArray(XP))XP=[];if(!Array.isArray(XH))XH=[];
 function uid(){let v='';try{v=localStorage.getItem('sz_uid')||'';if(!v){v=Math.random().toString(36).slice(2,12);localStorage.setItem('sz_uid',v)}}catch(x){}return v||'anon'}
 function xsave(){try{localStorage.setItem('sz_xp',JSON.stringify(XP.slice(0,60)));localStorage.setItem('sz_xh',JSON.stringify(XH.slice(-200)))}catch(x){}}
 function xok(d){return !!d&&typeof d.id==='string'&&d.id.length<40&&typeof d.n==='string'&&typeof d.c==='string'&&d.c.length<=200&&(d.i===''||(typeof d.i==='string'&&d.i.startsWith('data:image/jpeg;base64,')&&d.i.length<150000))}
 function xredraw(){const e=$('explore');if(e&&e.style.display==='flex'&&!e.querySelector('#xv'))exploreDraw()}
-function xadd(d){if(!xok(d)||XH.includes(d.id)||XP.some(z=>z.id===d.id))return false;XP.push({id:d.id,u:String(d.u||'').slice(0,40),n:d.n.slice(0,14),t:+d.t||Date.now(),c:d.c,i:d.i,l:[]});XP.sort((a,b)=>b.t-a.t);XP=XP.slice(0,60);xsave();xredraw();return true}
+function xadd(d){if(!xok(d)||XB.includes(String(d.u||''))||XH.includes(d.id)||XP.some(z=>z.id===d.id))return false;XP.push({id:d.id,u:String(d.u||'').slice(0,40),n:d.n.slice(0,14),t:+d.t||Date.now(),c:d.c,i:d.i,l:[]});XP.sort((a,b)=>b.t-a.t);XP=XP.slice(0,60);xsave();xredraw();return true}
 function xlike(id,u,on){const q=XP.find(z=>z.id===id);if(!q)return;q.l=(q.l||[]).filter(z=>z!==u);if(on)q.l.push(u);q.l=q.l.slice(0,500);xsave()}
 function xcompress(f,cb){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.6))};im.onerror=()=>cb('');im.src=r.result};r.onerror=()=>cb('');r.readAsDataURL(f)}
 function xmodal(fill){const e=$('explore');let v=e.querySelector('#xv');if(v)v.remove();v=document.createElement('div');v.id='xv';const bx=document.createElement('div');bx.className='xbx';
@@ -685,7 +789,7 @@ try{CR.emit('post',post).catch(()=>{})}catch(x){}close();exploreDraw()};bx.appen
 let XF=[],XS=[];try{XF=JSON.parse(localStorage.getItem('sz_fol')||'[]');XS=JSON.parse(localStorage.getItem('sz_sav')||'[]')}catch(x){}
 if(!Array.isArray(XF))XF=[];if(!Array.isArray(XS))XS=[];
 function xs2(){try{localStorage.setItem('sz_fol',JSON.stringify(XF.slice(-200)));localStorage.setItem('sz_sav',JSON.stringify(XS.slice(-200)))}catch(x){}}
-function xcom(id,n,c,t,u){const q=XP.find(z=>z.id===id);if(!q||typeof c!=='string'||!c||c.length>120)return false;q.k=q.k||[];if(q.k.some(z=>z.t===+t&&z.u===u))return false;q.k.push({n:String(n).slice(0,14),c:c,t:+t||Date.now(),u:String(u).slice(0,40)});q.k=q.k.slice(-50);xsave();return true}
+function xcom(id,n,c,t,u){const q=XP.find(z=>z.id===id);if(!q||XB.includes(String(u))||typeof c!=='string'||!c||c.length>120)return false;q.k=q.k||[];if(q.k.some(z=>z.t===+t&&z.u===u))return false;q.k.push({n:String(n).slice(0,14),c:c,t:+t||Date.now(),u:String(u).slice(0,40)});q.k=q.k.slice(-50);xsave();return true}
 function xcomments(q,cl){xmodal(bx=>{const h=document.createElement('b');h.textContent='💬 نظرها';bx.appendChild(h);
 for(const c of (q.k||[])){const d=document.createElement('div');d.style.cssText='text-align:right;margin:8px 0;border-bottom:1px solid #fff2';const n=document.createElement('b');n.textContent=c.n+': ';const t=document.createElement('span');t.textContent=c.c;d.append(n,t);bx.appendChild(d)}
 if(!(q.k||[]).length){const d=document.createElement('div');d.textContent='هنوز نظری نیست';d.style.color='#999';bx.appendChild(d)}})}
@@ -743,13 +847,13 @@ const t=document.createElement('div');t.className='pst';t.textContent={'IN-GAME'
 e.querySelector('#pcnt').textContent='👥 '+rows.filter(r=>r.st!=='OFFLINE').length+'/'+rows.length}
 function showInv(d){const bx=$('inv');$('invt').textContent=String(d.n||'Player').slice(0,14)+' تو را دعوت کرده';bx.style.display='block';
 $('invy').style.display=$('invn').style.display='';
-$('invy').onclick=()=>{if(d.f){partyAdd(d.f,d.n);try{CR.emit('invacc',{to:d.f,f:lobbyMe(),n:myN()})}catch(e){}if(!(MP.on&&d.mp)){bx.style.display='none';return}}if(MP.on&&d.mp&&isFinite(d.x)&&isFinite(d.z)){bx.style.display='none';P.x=Math.max(-58,Math.min(58,+d.x+1.5));P.z=Math.max(-58,Math.min(58,+d.z+1.5));P.y=0}
+$('invy').onclick=()=>{if(d.f){partyAdd(d.f,d.n);try{CR.emit('invacc',{to:d.f,f:lobbyMe(),n:myN()})}catch(e){}if(!(MP.on&&d.mp)){bx.style.display='none';return}}if(MP.on&&d.mp&&isFinite(d.x)&&isFinite(d.z)){bx.style.display='none';{const q=vcl(+d.x+1.5,+d.z+1.5);P.x=q[0];P.z=q[1]}P.y=0}
 else{$('invt').textContent='برای رفتن پیش او هر دو باید در حالت MP باشید';$('invy').style.display=$('invn').style.display='none';setTimeout(()=>bx.style.display='none',3500)}};
 $('invn').onclick=()=>bx.style.display='none';clearTimeout(showInv.t);showInv.t=setTimeout(()=>bx.style.display='none',15000)}
-nm.addEventListener('input',()=>{if(CR)CR.presence({n:nm.value.trim().slice(0,14)})});
+nm.addEventListener('input',()=>{if(CR&&!isBanned())CR.presence({n:nm.value.trim().slice(0,14),u:uid()})});
 (async()=>{try{const r=window.claude&&await claude.use('room');if(!r){$('cnote').textContent='چت فقط برای کاربران واردشده در claude.ai فعال است';return}
-CR=r;r.on('chat',m=>{const d=m.data;if(!d||typeof d.t!=='string')return;addMsg(String(d.n||'Player').slice(0,14),d.t.slice(0,200),m.isMe)});
-const upd=()=>{const nt=window.__net;$('cnote').textContent='چت جهانی · آنلاین: '+r.peers().length+(nt?(nt.ok?' · متصل ('+(nt.role==='hub'?'میزبان':'مهمان')+')':' · قطع'+(nt.err?' ('+nt.err+')':'')+' — در حال تلاش'):'');renderPl();updOnl(r)};setInterval(upd,2000);
+CR=r;try{if(isBanned())r.presence({n:null,u:null});else r.presence({n:nm.value.trim().slice(0,14),u:uid()})}catch(e){}r.on('ban',m=>banRecv('ban',m.data));r.on('unban',m=>banRecv('unban',m.data));r.on('chat',m=>{const d=m.data;if(!d||typeof d.t!=='string')return;addMsg(String(d.n||'Player').slice(0,14),d.t.slice(0,200),m.isMe)});
+const upd=()=>{const nt=window.__net;$('cnote').textContent='چت جهانی · آنلاین: '+r.peers().length+(nt?(nt.ok?' · متصل ('+(nt.role==='hub'?'میزبان':'مهمان')+')':' · قطع'+(nt.err?' ('+nt.err+')':'')+' — در حال تلاش'):'');renderPl();updOnl(r);memSeen();admTick()};setInterval(upd,2000);
 r.on('invite',m=>{const d=m.data;if(m.isMe||!d||d.to!==lobbyMe())return;showInv(d)});
 r.on('post',m=>{if(!m.isMe)xadd(m.data)});
 r.on('plike',m=>{const d=m.data;if(m.isMe||!d||typeof d.id!=='string')return;xlike(d.id,String(d.u||'').slice(0,40),!!d.on)});
@@ -758,7 +862,7 @@ r.on('psync',m=>{if(m.isMe)return;const me=uid();XP.filter(z=>z.u===me).slice(0,
 r.on('pstart',m=>{const d=m.data;if(m.isMe||!d||d.to!==lobbyMe()||!PT.m.has(d.f)||(d.k!=='duel'&&d.k!=='team')||!/^\d{4}$/.test(String(d.c)))return;partyGo(d.k,String(d.c),false)});
 r.on('invacc',m=>{const d=m.data;if(m.isMe||!d||d.to!==lobbyMe())return;partyAdd(d.f,d.n)});
 r.onPeers(upd);
-r.presence({n:(nm.value.trim()||'Guest').slice(0,14)});upd()}catch(e){$('cnote').textContent='چت در دسترس نیست'}})();
+if(!isBanned())r.presence({n:(nm.value.trim()||'Guest').slice(0,14)});upd()}catch(e){$('cnote').textContent='چت در دسترس نیست'}})();
 $('bc').addEventListener('pointerdown',e=>{e.preventDefault();toggleC()});
 try{if(inApp()||IOS)$('apk').style.display='none';if(inApp()||navigator.standalone)$('iosb').style.display='none'}catch(e){}
 $('iosb').onclick=()=>{const guide=()=>{$('iosm').style.display='flex'};
@@ -891,14 +995,35 @@ if(hd){hd.rotation.x=.9*tl;hd.position.z=.15*tl}if(hm){hm.rotation.x=.9*tl;hm.po
 if(T>=1.6&&!FN.hit){FN.hit=1;try{toast('☠ FINISHER')}catch(e){}
 if(FN.bot){g.userData.hp=0;die(g,true)}else if(MP.on)MP.room.emit('hit',{to:FN.peer,d:999})}
 if(T>=2.2)finEnd()}
-function loop(now){requestAnimationFrame(loop);const raw=(now-last)/1000,dt=Math.min(.05,raw);last=now;if(LD.on){ldTick(dt);return}try{mpPad(dt)}catch(e){}if(raw<.5){FPSA.t+=raw;FPSA.n++;if(FPSA.t>2.5){const fps=FPSA.n/FPSA.t;FPSA.t=0;FPSA.n=0;if(fps<22&&started){if(RG<4){RG++;try{localStorage.setItem('sz_rg3',RG)}catch(e){}applyRatio(QHI);ren.setSize(innerWidth,innerHeight)}else if(QL>1){setQ(1);flushTex()}}}}
+const ZN={on:false,z:[],t:0};
+function zoneBuild(){const o=VERD.ox;ZN.z=[[-90,100],[90,100],[0,0],[-90,-100],[90,-100]].map((q,i)=>{const x=o+q[0],z=q[1],g=new THREE.Group();
+const cyl=new THREE.Mesh(new THREE.CylinderGeometry(18,18,70,32,1,true),new THREE.MeshBasicMaterial({color:0xcccccc,transparent:true,opacity:.22,side:THREE.DoubleSide,depthWrite:false}));cyl.position.y=35;
+const ring=new THREE.Mesh(new THREE.RingGeometry(16,18,48),new THREE.MeshBasicMaterial({color:0xcccccc,transparent:true,opacity:.7,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.12;
+g.add(cyl,ring);g.position.set(x,0,z);(VERD.grp||scene).add(g);return{x,z,g,cyl,ring,p:0,own:0,L:'ABCDE'[i]}});ZN.t=0}
+function zoneEnd(){if(!ZN.on)return;ZN.on=false;for(const q of ZN.z)if(q.g.parent)q.g.parent.remove(q.g);ZN.z=[];MAPSEL='n';const h=document.getElementById('zhud');if(h)h.style.display='none'}
+function zoneFor(e){const U=e.userData,now=performance.now();if(U.zi===undefined||now-U.za>25000){const me=U.team?1:-1,c=ZN.z.map((q,i)=>i).filter(i=>ZN.z[i].own!==me);const a=c.length?c:ZN.z.map((q,i)=>i);U.zi=a[Math.floor(Math.random()*a.length)];U.za=now}return ZN.z[U.zi]}
+function zoneHud(){let h=document.getElementById('zhud');if(!h){h=document.createElement('div');h.id='zhud';h.style.cssText='position:fixed;left:50%;transform:translateX(-50%);top:calc(204px + env(safe-area-inset-top,0px));z-index:44;display:flex;gap:6px;direction:ltr;font:700 12px system-ui;pointer-events:none';document.body.appendChild(h)}
+h.style.display='flex';if(h.children.length!==ZN.z.length){h.replaceChildren();for(const q of ZN.z){const s=document.createElement('div');s.style.cssText='padding:3px 8px;border-radius:8px;border:1.5px solid #fff8;background:#000a;color:#fff';h.appendChild(s)}}
+ZN.z.forEach((q,i)=>{const s=h.children[i];s.textContent=q.L+' '+Math.round(Math.hypot(P.x-q.x,P.z-q.z))+'m';s.style.borderColor=q.own>0?'#4aa3ff':q.own<0?'#ff5a4a':'#fff8';s.style.color=q.own>0?'#8cc8ff':q.own<0?'#ff9a8f':'#fff'})}
+function zoneTick(dt){if(!ZN.on||!started||matchOver)return;ZN.t+=dt;
+for(const q of ZN.z){let me=0,fo=0;for(const u of allies)if(Math.hypot(u.position.x-q.x,u.position.z-q.z)<18)me++;for(const u of enemies)if(Math.hypot(u.position.x-q.x,u.position.z-q.z)<18)fo++;
+if(!P.dead&&Math.hypot(P.x-q.x,P.z-q.z)<18)me++;const d=me-fo;
+if(d>0)q.p=Math.min(1,q.p+Math.min(3,d)*.12*dt);else if(d<0)q.p=Math.max(-1,q.p+Math.max(-3,d)*.12*dt);
+q.own=q.p>=.99?1:q.p<=-.99?-1:(Math.abs(q.p)<.2?0:q.own);
+const col=q.own>0?0x4aa3ff:q.own<0?0xff5a4a:0xcccccc;q.cyl.material.color.setHex(col);q.ring.material.color.setHex(col)}
+if(ZN.t>=1){ZN.t-=1;let a=0,b=0;for(const q of ZN.z){if(q.own>0)a++;else if(q.own<0)b++}score[0]+=a;score[1]+=b;checkEnd()}
+zoneHud()}
+function verdStart(){const n=nm.value.trim();if(!n){toast('اول اسمت را بنویس');return}
+MAPSEL='v';verdApply(true);ZN.on=true;score=[0,0];GOAL=200;$('tgt').textContent=200;newRound();zoneBuild();begin();
+toast('🌍 Verdgan: ۵ منطقه (A تا E) را بگیر. با ماشین سریع‌تر می‌رسی!')}
+function loop(now){requestAnimationFrame(loop);const raw=(now-last)/1000,dt=Math.min(.05,raw);last=now;if(LD.on){ldTick(dt);return}try{mpPad(dt)}catch(e){}try{carTick(dt)}catch(e){}try{zoneTick(dt)}catch(e){}if(raw<.5){FPSA.t+=raw;FPSA.n++;if(FPSA.t>2.5){const fps=FPSA.n/FPSA.t;FPSA.t=0;FPSA.n=0;if(fps<22&&started){if(RG<4){RG++;try{localStorage.setItem('sz_rg3',RG)}catch(e){}applyRatio(QHI);ren.setSize(innerWidth,innerHeight)}else if(QL>1){setQ(1);flushTex()}}}}
 if(started&&!P.dead&&!MP.waiting&&(locked||!('pointerLockElement' in document)||true)){
 if(keys.ArrowLeft)P.yaw+=2*dt;if(keys.ArrowRight)P.yaw-=2*dt;if(keys.ArrowUp)P.pitch=Math.min(1.4,P.pitch+1.5*dt);if(keys.ArrowDown)P.pitch=Math.max(-1.4,P.pitch-1.5*dt);
 const sp=(keys.ShiftLeft&&!P.crouch?9:5.5)*(P.crouch?.55:1)*dt;let fx=0,fz=0;
 if(keys.KeyW)fz-=1;if(keys.KeyS)fz+=1;if(keys.KeyA)fx-=1;if(keys.KeyD)fx+=1;
 if(FN.on){fx=fz=0}else{fx+=jx+gpx;fz+=jy+gpy}const l=Math.max(1,Math.hypot(fx,fz));fx/=l;fz/=l;const s=Math.sin(P.yaw),c=Math.cos(P.yaw);
 P.x+=(fx*c+fz*s)*sp;P.z+=(-fx*s+fz*c)*sp;collide(P,.5);
-P.x=Math.max(-58,Math.min(58,P.x));P.z=Math.max(-58,Math.min(58,P.z));
+{const q=vcl(P.x,P.z);P.x=q[0];P.z=q[1]}
 if((keys.Space||tJump||gpJ)&&!FN.on&&P.y===0&&!P.crouch)P.vy=7;P.vy-=20*dt;P.y=Math.max(0,P.y+P.vy*dt);if(P.y===0)P.vy=0;
 P.fire-=dt;if(P.reload>0){P.reload-=dt;if(P.reload<=0){const n=Math.min(P.mag-P.ammo,P.reserve);P.ammo+=n;P.reserve-=n}}
 else if(((mouseDown&&locked)||keys.Enter||tFire||gpF)&&P.fire<=0&&!FN.on)P.w?stab():shoot();
@@ -907,8 +1032,9 @@ for(const e of [...enemies,...allies]){const U=e.userData;let tg=null,td=1e9;
 for(const f of (U.team?enemies:allies)){const dd=Math.hypot(f.position.x-e.position.x,f.position.z-e.position.z);if(dd<td){td=dd;tg={x:f.position.x,y:0,z:f.position.z}}}
 if(!U.team){const dd=Math.hypot(P.x-e.position.x,P.z-e.position.z);if(dd<td+3){td=dd;tg={x:P.x,y:P.y+P.eye-1.7,z:P.z}}}
 if(!tg)continue;const dx=tg.x-e.position.x,dz=tg.z-e.position.z,d=td;
-e.rotation.y=Math.atan2(-dx,-dz);
-if(d>14){e.position.x+=dx/d*U.sp*dt;e.position.z+=dz/d*U.sp*dt;collide(e.position,.5)}
+let mx=dx,mz=dz,md=d,hold=14;if(ZN.on&&d>55){const zz=zoneFor(e);if(zz){mx=zz.x-e.position.x;mz=zz.z-e.position.z;md=Math.hypot(mx,mz)||1;hold=9}}
+e.rotation.y=Math.atan2(-mx,-mz);
+if(md>hold){e.position.x+=mx/md*U.sp*dt;e.position.z+=mz/md*U.sp*dt;collide(e.position,.5)}
 U.cd-=dt;if(U.cd<=0){U.cd=1.2+Math.random()*1.5;if(d<55&&los(e.position.x,e.position.z,tg.x,tg.z)){const o=new THREE.Vector3(e.position.x,1.4,e.position.z),v=new THREE.Vector3(tg.x,tg.y+1.2,tg.z).sub(o).normalize();
 const sp=.03+d*.0015;v.x+=(Math.random()-.5)*sp*2;v.y+=(Math.random()-.5)*sp;v.z+=(Math.random()-.5)*sp*2;v.normalize().multiplyScalar(32);
 const m=new THREE.Mesh(new THREE.SphereGeometry(.12,6,6),new THREE.MeshBasicMaterial({color:U.team?0x55aaff:0xff6a2a}));m.position.copy(o);scene.add(m);bullets.push({m,v,life:3,team:U.team})}}}
@@ -916,7 +1042,7 @@ const m=new THREE.Mesh(new THREE.SphereGeometry(.12,6,6),new THREE.MeshBasicMate
 for(let i=bullets.length-1;i>=0;i--){const bl=bullets[i];bl.life-=dt;const q=bl.m.position;let gone=bl.life<=0;
 const nS=Math.max(1,Math.ceil(bl.v.length()*dt/.3)),sd=dt/nS;
 for(let s=0;s<nS&&!gone;s++){q.addScaledVector(bl.v,sd);
-if(q.y<0||Math.abs(q.x)>62||Math.abs(q.z)>62){gone=true;break}
+{const bx=VERD.on?VERD.ox:0,bh=VERD.on?VERD.half+4:62;if(q.y<0||Math.abs(q.x-bx)>bh||Math.abs(q.z)>bh){gone=true;break}}
 for(let k=0;k<obs.length;k++){const o=obs[k];if(Math.abs(q.x-o.x)<o.w/2&&Math.abs(q.z-o.z)<o.d/2&&q.y<solid[k].position.y*2){gone=true;break}}
 if(gone)break;
 if(!bl.team&&!P.dead&&Math.hypot(q.x-P.x,q.z-P.z)<.6&&q.y>P.y&&q.y<P.y+P.eye+.2){hurt(5+wave);gone=true;break}
@@ -941,7 +1067,7 @@ drawMM();if(started||now-LR>400){LR=now;ren.render(scene,cam)}}
 /* ===== دو نفره روی یک گوشی (چپ و راست) ===== */
 const LD={on:false,pl:[],cams:[],tr:[],tch:new Map(),won:-1,lay:[],ui:[],hidden:['hud','tc','gear','chb','mic','bc','chat','gm','inv','wait']};
 const lray=new THREE.Raycaster();lray.layers.enable(1);lray.layers.enable(2);
-const LSP=[[-30,30],[30,-30],[-30,-30],[30,30],[0,42],[0,-42],[42,0],[-42,0]];
+const LSP=[[-30,30],[30,-30],[-30,-30],[30,30],[0,42],[0,-42],[42,0],[-42,0]],LSP0=LSP.slice();
 function ldMk(txt,css,par){const e=document.createElement('div');e.style.cssText=css;if(txt)e.textContent=txt;(par||LD.root).appendChild(e);return e}
 function ldBuild(){if(LD.root)return;
 const r=document.createElement('div');r.style.cssText='position:fixed;inset:0;z-index:60;display:none;touch-action:none;user-select:none;-webkit-user-select:none;color:#fff;font-family:system-ui,sans-serif';document.body.appendChild(r);LD.root=r;
@@ -1014,7 +1140,7 @@ function ldNewPl(i){return{i,x:0,z:0,y:0,vy:0,yaw:0,pitch:0,hp:100,kills:0,fire:
 function ldPlace(p,x,z){p.x=x;p.z=z;p.y=0;p.vy=0;p.hp=100;p.dead=0;p.yaw=Math.atan2(x,z);p.pitch=0}
 function ldSpawn(i){const o=LD.pl[1-i];let best=LSP[0],bd=-1;for(const s of LSP){const d=Math.hypot(s[0]-o.x,s[1]-o.z);if(d>bd){bd=d;best=s}}ldPlace(LD.pl[i],best[0],best[1])}
 function ldRatio(){const q=LD.q==null?1:LD.q,mx=((ren.capabilities&&ren.capabilities.maxTextureSize)||4096)/innerWidth,t=q===0?Math.min(window.devicePixelRatio||1,1.5):q===1?1920/innerWidth:q===2?3840/innerWidth:Math.min(8,mx);return Math.max(1,Math.min(t,mx))}
-function ldStart(){if(LD.on)return;ldBuild();
+function ldStart(){if(LD.on)return;ldBuild();verdApply(MAPSEL==='v');LSP.splice(0,LSP.length,...(VERD.on?VSP():LSP0));
 for(const id of LD.hidden){const e=$(id);if(e)e.style.visibility='hidden'}
 $('menu').style.display='none';
 try{[...enemies,...allies].forEach(u=>{u.visible=false})}catch(e){}
@@ -1126,7 +1252,7 @@ for(const q of LD.pk||[]){if(q.t>0){q.t-=dt;if(q.t<=0)q.m.visible=true}q.m.rotat
 for(let i=0;i<2;i++){const p=LD.pl[i],cm=LD.cams[i];
 if(p.dead>0){p.dead-=dt;if(p.dead<=0&&LD.won<0)ldSpawn(i)}
 else if(LD.won<0&&!LD.cin){const s=Math.sin(p.yaw),c=Math.cos(p.yaw);let fx=p.jx,fz=p.jy;const l=Math.max(1,Math.hypot(fx,fz));fx/=l;fz/=l;const sp=5.5*dt;
-p.x+=(fx*c+fz*s)*sp;p.z+=(-fx*s+fz*c)*sp;collide(p,.5);p.x=Math.max(-58,Math.min(58,p.x));p.z=Math.max(-58,Math.min(58,p.z));
+p.x+=(fx*c+fz*s)*sp;p.z+=(-fx*s+fz*c)*sp;collide(p,.5);{const q=vcl(p.x,p.z);p.x=q[0];p.z=q[1]}
 if(p.jmp&&p.y===0)p.vy=7;p.vy-=20*dt;p.y=Math.max(0,p.y+p.vy*dt);if(p.y===0)p.vy=0;
 p.fire-=dt;if(p.ft&&p.fire<=0){p.fire=.11;ldShoot(i)}
 for(const q of LD.pk||[])if(q.t<=0&&p.hp<100&&Math.hypot(p.x-q.m.position.x,p.z-q.m.position.z)<1.4){p.hp=Math.min(100,p.hp+50);q.t=12;q.m.visible=false;ldRumble(i,80)}}
@@ -1138,8 +1264,8 @@ LD.ui[i].hud.textContent='P'+(i+1)+(i?' 🟠 ':' 🔵 ')+'❤ '+Math.max(0,Math.
 LD.sc.textContent='🔵 '+LD.pl[0].kills+' : '+LD.pl[1].kills+' 🟠';
 for(let k=LD.tr.length-1;k>=0;k--){const o=LD.tr[k];o.t-=dt;if(o.t<=0){scene.remove(o.l);o.l.geometry.dispose();o.l.material.dispose();LD.tr.splice(k,1)}}
 ren.setScissorTest(true);
-for(let i=0;i<2;i++){const cm=LD.cams[i],x=i*(W/2);cm.aspect=(W/2)/H;cm.updateProjectionMatrix();ren.setViewport(x,0,W/2,H);ren.setScissor(x,0,W/2,H);ren.render(scene,cm)}}
-function ldExit(){if(!LD.on)return;if(LD.cin)ldCinEnd();LD.on=false;LD.tch.clear();
+for(let i=0;i<2;i++){const cm=LD.cams[i],x=i*(W/2);cm.aspect=(W/2)/H;cm.far=VERD.on?420:200;cm.updateProjectionMatrix();ren.setViewport(x,0,W/2,H);ren.setScissor(x,0,W/2,H);ren.render(scene,cm)}}
+function ldExit(){if(!LD.on)return;if(LD.cin)ldCinEnd();LSP.splice(0,LSP.length,...LSP0);verdApply(false);LD.on=false;LD.tch.clear();
 for(const p of LD.pl)scene.remove(p.model);for(const c of LD.cams)scene.remove(c);
 for(const o of LD.tr)scene.remove(o.l);LD.tr.length=0;for(const q of LD.pk||[])scene.remove(q.m);LD.pk=[];
 LD.root.style.display='none';LD.bn.style.display='none';
@@ -1150,6 +1276,9 @@ toLobby()}
 $('ldb').onclick=ldStart;
 {const N=['۴K','۳×','۲×','۱.۵×','۱×'],lab=()=>{$('ldq').textContent='🖥 کیفیت همه‌ی مودها: '+N[RG]};lab();
 $('ldq').onclick=function(){RG=(RG+4)%5;try{localStorage.setItem('sz_rg3',String(RG))}catch(e){}lab()}}
+{const mb=$('mapb'),lab=()=>{mb.textContent='🗺 مپ: '+(MAPSEL==='v'?'Verdgan (خیلی بزرگ)':'عادی')};lab();mb.onclick=()=>{MAPSEL=MAPSEL==='v'?'n':'v';try{localStorage.setItem('sz_map',MAPSEL)}catch(e){}lab()}}
+{const vg=$('vgm'),upd=()=>{vg.disabled=!nm.value.trim()};nm.addEventListener('input',upd);upd();setInterval(upd,700);vg.onclick=verdStart}
+$('admb').onclick=admOpen;banScreen();
 $('ldlim').onclick=function(){const o=[5,10,20];LD.lim=o[(o.indexOf(LD.lim||10)+1)%3];this.textContent='🎯 تا '+String(LD.lim).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])+' کشته'};
 
 window.SKREADY=true;[...enemies,...allies].forEach(botSkin);
